@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글씨 요정 - 바른 글씨 연습</title>
-    <!-- Tesseract.js 라이브러리 추가 -->
-    <script src="https://unpkg.com/tesseract.js@v4.1.1/dist/tesseract.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -563,7 +561,7 @@
         .character-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -580,7 +578,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 100px;
+            margin-bottom: 120px;
         }
 
         .character-guide {
@@ -642,122 +640,45 @@
             border-left: 1px dashed #cbd5e0;
         }
 
-        /* ===============================
-           🌟 별점 평가 시스템 (Writing-Master 스타일)
-        =============================== */
-        .achievement-container {
+        .status-indicator {
             position: absolute;
-            bottom: -35px;
+            bottom: -60px;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 4px 8px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 1px solid #e2e8f0;
-        }
-
-        .stars-container {
-            display: flex;
-            gap: 2px;
-        }
-
-        .star {
-            width: 16px;
-            height: 16px;
-            background: #e2e8f0;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            transition: all 0.3s ease;
-        }
-
-        .star.filled {
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            animation: starShine 0.6s ease-out;
-        }
-
-        @keyframes starShine {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        .achievement-badge {
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            padding: 2px 6px;
-            border-radius: 8px;
-            letter-spacing: 0.5px;
-            margin-left: 4px;
-        }
-
-        .achievement-bronze {
-            background: linear-gradient(135deg, #cd853f, #daa520);
-            color: white;
-        }
-
-        .achievement-silver {
-            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
-            color: white;
-        }
-
-        .achievement-gold {
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            color: white;
-        }
-
-        .achievement-none {
-            background: #f7fafc;
-            color: #a0aec0;
-        }
-
-        /* 레거시 status-indicator 호환성 유지 */
-        .status-indicator {
-            display: none;
-        }
-
-        /* ===============================
-           📊 게임화 점수 표시 영역
-        =============================== */
-        .progress-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 15px 0;
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .progress-info {
-            font-size: 14px;
-            font-weight: 500;
-            color: #4a5568;
-        }
-
-        .score-display {
-            background: linear-gradient(135deg, #48bb78, #38a169);
-            color: white;
-            padding: 6px 16px;
+            width: auto;
+            min-width: 120px;
+            height: auto;
+            padding: 8px 12px;
             border-radius: 20px;
+            border: 2px solid #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             font-size: 14px;
-            font-weight: 600;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        @media (max-width: 768px) {
-            .progress-section {
-                flex-direction: column;
-                text-align: center;
-                gap: 8px;
-            }
+        .status-indicator.red {
+            background: #f56565;
+            box-shadow: 0 2px 8px rgba(245, 101, 101, 0.4);
+            border-color: #e53e3e;
+        }
+
+        .status-indicator.green {
+            background: #48bb78;
+            box-shadow: 0 2px 8px rgba(72, 187, 120, 0.4);
+            border-color: #38a169;
+        }
+
+        .status-indicator.yellow {
+            background: #f6e05e;
+            box-shadow: 0 2px 8px rgba(246, 224, 94, 0.4);
+            border-color: #d69e2e;
+            color: #2d3748;
         }
 
         .character-index {
@@ -953,7 +874,7 @@
             .character-box {
                 width: 150px;
                 height: 150px;
-                margin-bottom: 40px;
+                margin-bottom: 80px;
             }
 
             .character-guide {
@@ -973,7 +894,7 @@
             }
 
             .character-grid {
-                gap: 15px;
+                gap: 20px;
                 padding: 15px;
             }
 
@@ -1053,6 +974,30 @@
                 padding: 15px;
                 font-size: 1.2rem;
             }
+
+            .status-indicator {
+                bottom: -50px;
+                min-width: 100px;
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .evaluation-content {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .evaluation-title {
+                font-size: 1.5rem;
+            }
+
+            .evaluation-score {
+                font-size: 2.2rem;
+            }
+
+            .evaluation-message {
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1109,7 +1054,7 @@
             .character-box {
                 width: 120px;
                 height: 120px;
-                margin-bottom: 35px;
+                margin-bottom: 70px;
             }
 
             .character-guide {
@@ -1129,7 +1074,7 @@
             }
 
             .character-grid {
-                gap: 10px;
+                gap: 15px;
                 padding: 10px;
             }
 
@@ -1151,6 +1096,30 @@
             .btn {
                 font-size: 0.9rem;
                 padding: 10px 15px;
+            }
+
+            .status-indicator {
+                bottom: -45px;
+                min-width: 90px;
+                font-size: 11px;
+                padding: 5px 8px;
+            }
+
+            .evaluation-content {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            .evaluation-title {
+                font-size: 1.3rem;
+            }
+
+            .evaluation-score {
+                font-size: 2rem;
+            }
+
+            .evaluation-message {
+                font-size: 0.9rem;
             }
         }
 
@@ -1361,6 +1330,83 @@
             font-size: 1.1rem;
         }
 
+        /* 평가 팝업 스타일 */
+        .evaluation-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: popupFadeIn 0.3s ease-out;
+        }
+
+        .evaluation-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: popupSlideIn 0.3s ease-out;
+        }
+
+        .evaluation-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .evaluation-score {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .evaluation-message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .popup-close-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popup-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes popupFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes popupSlideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(-30px) scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
 
     </style>
 </head>
@@ -1412,14 +1458,8 @@
                 <button id="eraserBtn" onclick="setDrawingMode('eraser')" class="btn btn-secondary">🧽 지우개</button>
             </div>
 
-            <!-- 게임화 점수 표시 -->
-            <div class="progress-section">
-                <div class="progress-info" id="progressInfo">진행률: 0/0 완료</div>
-                <div class="score-display">⭐ 점수: <span id="totalScore">0</span></div>
-            </div>
-
             <div class="instructions">
-                📝 각 칸의 회색 글씨를 정확히 따라 써 보세요! 별 3개를 모두 채우는 것이 목표입니다!😊<br class="mobile-break">
+                📝 각 칸의 회색 글씨를 정확히 따라 써 보세요! 글씨를 바르게 쓰면 칭찬 메시지가 나타나요😊<br class="mobile-break">
             </div>
 
             <div class="character-grid" id="characterGrid">
@@ -1428,6 +1468,7 @@
 
             <div class="controls">
                 <button onclick="clearAllCanvas()" class="btn btn-primary">🗑️ 모두 지우기</button>
+                <button onclick="evaluateHandwriting()" class="btn btn-secondary">🔍 글씨 평가</button>
                 <button onclick="saveResult()" class="btn btn-success">💾 결과 저장</button>
             </div>
 
@@ -1520,30 +1561,15 @@
                 canvas.style.height = '100%';
                 canvas.style.cursor = 'crosshair'; // 기본 연필 모드
 
-                // 게임화 성취 시스템 생성
-                const achievementContainer = document.createElement('div');
-                achievementContainer.className = 'achievement-container';
-                
-                const starsContainer = document.createElement('div');
-                starsContainer.className = 'stars-container';
-                starsContainer.innerHTML = `
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                `;
-                
-                const achievementBadge = document.createElement('div');
-                achievementBadge.className = 'achievement-badge achievement-none';
-                achievementBadge.textContent = '시작';
-                
-                achievementContainer.appendChild(starsContainer);
-                achievementContainer.appendChild(achievementBadge);
+                const indicator = document.createElement('div');
+                indicator.className = 'status-indicator red';
+                indicator.textContent = evaluationMessages.red[0]; // 초기 메시지 설정
 
                 box.appendChild(index);
                 box.appendChild(guide);
                 box.appendChild(crosshair);
                 box.appendChild(canvas);
-                box.appendChild(achievementContainer);
+                box.appendChild(indicator);
                 grid.appendChild(box);
 
                 // 캔버스 설정
@@ -1557,13 +1583,9 @@
                     canvas: canvas,
                     ctx: ctx,
                     char: char,
-                    achievementContainer: achievementContainer,
-                    starsContainer: starsContainer,
-                    achievementBadge: achievementBadge,
+                    indicator: indicator,
                     isDrawing: false,
-                    drawingData: [],
-                    achievement: { name: 'none', title: '시작', stars: 0, points: 0 },
-                    strokes: []
+                    drawingData: []
                 });
 
                 characterData.push({
@@ -1575,9 +1597,6 @@
                 setupCanvasEvents(canvas, boxIndex);
                 boxIndex++; // 박스 인덱스 증가
             }
-            
-            // 초기 게임 UI 업데이트
-            updateGameUI();
         }
 
         // 캔버스 이벤트 설정
@@ -1585,7 +1604,6 @@
             let isDrawing = false;
             let lastX = 0;
             let lastY = 0;
-            let currentStroke = []; // 현재 스트로크 데이터
 
             function getEventPos(e) {
                 const rect = canvas.getBoundingClientRect();
@@ -1630,9 +1648,6 @@
                 if (currentDrawingMode === 'pencil') {
                     ctx.globalCompositeOperation = 'source-over';
                     characterCanvases[index].drawingData.push({x: lastX, y: lastY, type: 'start'});
-                    
-                    // 스트로크 데이터 초기화 및 시작점 추가
-                    currentStroke = [{x: lastX, y: lastY}];
                 } else if (currentDrawingMode === 'eraser') {
                     ctx.globalCompositeOperation = 'destination-out';
                     // 지우개 시작점에서도 지우기
@@ -1666,9 +1681,6 @@
                     ctx.stroke();
                     
                     characterCanvases[index].drawingData.push({x: currentX, y: currentY, type: 'draw'});
-                    
-                    // 스트로크 데이터에 현재 점 추가
-                    currentStroke.push({x: currentX, y: currentY});
                 } else if (currentDrawingMode === 'eraser') {
                     // 지우개 모드: 지우기
                     ctx.globalCompositeOperation = 'destination-out';
@@ -1681,6 +1693,9 @@
                 
                 lastX = currentX;
                 lastY = currentY;
+
+                // 실시간 평가
+                evaluateCharacter(index);
             }
 
             function stopDrawing(e) {
@@ -1691,23 +1706,8 @@
                     // 그리기 모드에 따라 다른 종료 타입 기록
                     if (currentDrawingMode === 'pencil') {
                         characterCanvases[index].drawingData.push({type: 'end'});
-                        
-                        // 스트로크 데이터 저장 (게임화 평가용)
-                        if (currentStroke.length > 2) {
-                            characterCanvases[index].strokes.push([...currentStroke]);
-                            
-                            // 즉시 평가 수행
-                            setTimeout(() => {
-                                const level = evaluateDrawing(characterCanvases[index]);
-                                updateAchievement(characterCanvases[index], level);
-                            }, 100);
-                        }
                     } else {
                         characterCanvases[index].drawingData.push({type: 'erase_end'});
-                        
-                        // 지우개 사용 시 스트로크 데이터 초기화
-                        characterCanvases[index].strokes = [];
-                        updateAchievement(characterCanvases[index], ACHIEVEMENT_LEVELS.NONE);
                     }
                     
                     // 컨텍스트를 기본 그리기 모드로 복원
@@ -1715,7 +1715,6 @@
                     ctx.globalCompositeOperation = 'source-over';
                 }
                 isDrawing = false;
-                currentStroke = []; // 현재 스트로크 초기화
             }
 
             // 마우스 이벤트
@@ -1961,315 +1960,48 @@
             return result;
         }
 
-        // ========================================
-        // 🚀 TESSERACT.JS 기반 OCR 평가 시스템
-        // ========================================
-        
-        let isOcrProcessing = false; // OCR 중복 실행 방지
-        
-        // 새로운 OCR 기반 글자 평가 시스템
+        // 회색 가이드선 형태 일치 기반 엄격한 평가 시스템
         function evaluateCharacter(index) {
-            if (isOcrProcessing) return; // 중복 실행 방지
-            
-            setTimeout(async () => {
+            setTimeout(() => {
                 const canvasData = characterCanvases[index];
-                const targetChar = canvasData.char;
-                const canvas = canvasData.canvas;
+                const char = canvasData.char;
                 
-                console.log(`🚀 OCR 평가 시작: "${targetChar}" (인덱스: ${index})`);
-                
-                // 1단계: 기본 체크 (그림을 그렸는지 확인)
-                if (canvasData.drawingData.length < 3) {
-                    console.log(`❌ 그림 없음: drawingData.length = ${canvasData.drawingData.length}`);
+                // 최소 그리기 데이터 확인 (완화)
+                if (canvasData.drawingData.length < 5) {
                     characterData[index].completed = false;
                     canvasData.indicator.className = 'status-indicator red';
                     return;
                 }
                 
-                // 2단계: OCR 인식 실행
-                try {
-                    isOcrProcessing = true;
-                    
-                    // 처리 중 표시
-                    canvasData.indicator.className = 'status-indicator processing';
-                    console.log(`🔄 OCR 처리 시작...`);
-                    
-                    const ocrResult = await performOCRRecognition(canvas, targetChar);
-                    
-                    // 결과 로그
-                    console.log(`📊 OCR 평가 완료:`);
-                    console.log(`   인식 결과: "${ocrResult.metrics.recognizedText}"`);
-                    console.log(`   목표 글자: "${ocrResult.metrics.targetChar}"`);
-                    console.log(`   신뢰도: ${ocrResult.metrics.confidence?.toFixed(1)}%`);
-                    console.log(`   일치 유형: ${ocrResult.metrics.matchType}`);
-                    console.log(`   최종 결과: ${ocrResult.result}`);
-                    console.log(`   피드백: ${ocrResult.reason}`);
-                    
-                    // 결과 적용
-                    setIndicatorByEvaluation(canvasData, characterData[index], ocrResult.result);
-                    
-                } catch (error) {
-                    console.error('❌ OCR 처리 오류:', error);
-                    
-                    // 오류 시 기본 평가로 폴백
-                    const fallbackResult = performFallbackEvaluation(canvasData, targetChar);
-                    setIndicatorByEvaluation(canvasData, characterData[index], fallbackResult);
-                    
-                } finally {
-                    isOcrProcessing = false;
+                // 색칠/휘갈김 패턴 감지 (더 엄격하게)
+                if (isScribbleOrFillPattern(canvasData.canvas)) {
+                    characterData[index].completed = false;
+                    canvasData.indicator.className = 'status-indicator red';
+                    return;
                 }
+                
+                // 회색 가이드선과의 형태 일치도 평가 (가장 중요한 기준)
+                const guideMatchScore = calculateGuideLineMatchScore(canvasData.canvas, char);
+                
+                console.log(`글자 "${char}" - 가이드선 일치도: ${guideMatchScore.toFixed(3)}`);
+                
+                // 회색 가이드선 형태 일치 기준으로만 평가 (완화된 기준)
+                let finalEvaluation;
+                if (guideMatchScore >= 0.75) {
+                    // 가이드선과 75% 이상 일치하면 초록불 (기존 85%에서 완화)
+                    finalEvaluation = '초록불';
+                } else if (guideMatchScore >= 0.55) {
+                    // 가이드선과 55% 이상 일치하면 노란불 (기존 65%에서 완화)
+                    finalEvaluation = '노란불';
+                } else {
+                    // 그 외는 모두 빨간불
+                    finalEvaluation = '빨간불';
+                }
+                
+                setIndicatorByEvaluation(canvasData.indicator, characterData[index], finalEvaluation);
                 
             }, 50);
         }
-        
-        // 🔍 OCR 인식 수행
-        async function performOCRRecognition(canvas, targetChar) {
-            // 캔버스 이미지를 더 선명하게 전처리
-            const processedCanvas = preprocessCanvasForOCR(canvas);
-            const imageData = processedCanvas.toDataURL('image/png');
-            
-            // Tesseract.js로 텍스트 인식
-            const { data: { text, confidence } } = await Tesseract.recognize(
-                imageData,
-                'kor+eng', // 한글 + 영어 인식
-                {
-                    logger: (m) => {
-                        if (m.status === 'recognizing text') {
-                            console.log(`   OCR 진행률: ${Math.round(m.progress * 100)}%`);
-                        }
-                    },
-                    tessedit_char_whitelist: '가나다라마바사아자차카타파하거너더러머버서어저처커터퍼허고노도로모보소오조초코토포호구누두루무부수우주추쿠투푸후그느드르므브스으즈츠크트프흐기니디리미비시이지치키티피히ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789vwlL',
-                    tessedit_pageseg_mode: Tesseract.PSM.SINGLE_CHAR // 단일 문자 모드
-                }
-            );
-            
-            // 인식 결과 분석
-            const recognizedText = text.trim().replace(/\s/g, ''); // 공백 제거
-            const analysisResult = analyzeOCRResult(recognizedText, targetChar, confidence);
-            
-            return analysisResult;
-        }
-        
-        // 🖼️ OCR용 캔버스 전처리 (인식률 향상)
-        function preprocessCanvasForOCR(originalCanvas) {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            
-            // 더 큰 크기로 스케일링 (OCR 성능 향상)
-            const scale = 3;
-            canvas.width = originalCanvas.width * scale;
-            canvas.height = originalCanvas.height * scale;
-            
-            // 흰색 배경
-            ctx.fillStyle = '#FFFFFF';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // 원본 이미지를 크게 확대해서 그리기
-            ctx.imageSmoothingEnabled = false; // 픽셀 선명도 유지
-            ctx.drawImage(originalCanvas, 0, 0, canvas.width, canvas.height);
-            
-            // 선을 더 굵고 선명하게 만들기
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const data = imageData.data;
-            
-            for (let i = 0; i < data.length; i += 4) {
-                const alpha = data[i + 3];
-                if (alpha > 0) {
-                    // 검은색으로 변환
-                    data[i] = 0;     // R
-                    data[i + 1] = 0; // G
-                    data[i + 2] = 0; // B
-                    data[i + 3] = 255; // A
-                }
-            }
-            
-            ctx.putImageData(imageData, 0, 0);
-            return canvas;
-        }
-        
-        // 📊 OCR 결과 분석 및 평가
-        function analyzeOCRResult(recognizedText, targetChar, confidence) {
-            console.log(`   🔍 상세 분석: "${recognizedText}" vs "${targetChar}" (신뢰도: ${confidence.toFixed(1)}%)`);
-            
-            // 1. 정확한 일치 (완벽한 성공)
-            if (recognizedText === targetChar && confidence >= 50) {
-                return {
-                    result: '초록불',
-                    reason: `완벽해요! "${targetChar}"을(를) 정확하게 써주셨어요! 🌟`,
-                    allStrokesComplete: true,
-                    partialComplete: true,
-                    scores: [confidence / 100],
-                    metrics: {
-                        recognizedText,
-                        targetChar,
-                        confidence,
-                        matchType: 'perfect_match'
-                    }
-                };
-            }
-            
-            // 2. 정확한 일치 + 낮은 신뢰도 (글씨체 개선 필요)
-            if (recognizedText === targetChar && confidence >= 25) {
-                return {
-                    result: '노란불',
-                    reason: `맞아요! 하지만 더 또박또박 써보세요! "${targetChar}" 📝`,
-                    allStrokesComplete: true,
-                    partialComplete: true,
-                    scores: [confidence / 100],
-                    metrics: {
-                        recognizedText,
-                        targetChar,
-                        confidence,
-                        matchType: 'correct_but_unclear'
-                    }
-                };
-            }
-            
-            // 3. 유사한 글자 (부분 성공)
-            const similarityScore = calculateSimilarity(recognizedText, targetChar);
-            if (similarityScore >= 0.6 && confidence >= 30) {
-                return {
-                    result: '노란불',
-                    reason: `거의 다 왔어요! "${recognizedText}"→"${targetChar}" 로 고쳐써보세요! 💪`,
-                    allStrokesComplete: false,
-                    partialComplete: true,
-                    scores: [similarityScore],
-                    metrics: {
-                        recognizedText,
-                        targetChar,
-                        confidence,
-                        similarityScore,
-                        matchType: 'similar_character'
-                    }
-                };
-            }
-            
-            // 4. 인식 실패 또는 완전히 다른 글자
-            if (recognizedText === '' || confidence < 15) {
-                return {
-                    result: '빨간불',
-                    reason: '글씨를 더 또박또박 써주세요! ✏️',
-                    allStrokesComplete: false,
-                    partialComplete: false,
-                    scores: [0],
-                    metrics: {
-                        recognizedText,
-                        targetChar,
-                        confidence,
-                        matchType: 'unrecognizable'
-                    }
-                };
-            } else {
-                return {
-                    result: '빨간불',
-                    reason: `"${recognizedText}"이(가) 아니라 "${targetChar}"을(를) 써주세요! 🎯`,
-                    allStrokesComplete: false,
-                    partialComplete: false,
-                    scores: [0],
-                    metrics: {
-                        recognizedText,
-                        targetChar,
-                        confidence,
-                        matchType: 'wrong_character'
-                    }
-                };
-            }
-        }
-        
-                 // 🔄 폴백 평가 (OCR 실패 시)
-         function performFallbackEvaluation(canvasData, targetChar) {
-             console.log(`🔄 폴백 평가 실행: ${targetChar}`);
-             
-             // 간단한 픽셀 기반 평가
-             if (canvasData.drawingData.length >= 10) {
-                 return '노란불'; // 충분히 그렸으면 노란불
-             } else {
-                 return '빨간불'; // 너무 적게 그렸으면 빨간불
-             }
-         }
-         
-         // 📏 문자 유사도 계산
-         function calculateSimilarity(str1, str2) {
-             if (str1 === str2) return 1.0;
-             if (str1.length === 0 || str2.length === 0) return 0.0;
-             
-             // 한글 자모 유사도 체크
-             if (isCompleteHangul(str1) && isCompleteHangul(str2)) {
-                 return calculateHangulSimilarity(str1, str2);
-             }
-             
-             // 영어/숫자 유사도 체크  
-             return calculateLevenshteinSimilarity(str1, str2);
-         }
-         
-         // 한글 자모 기반 유사도
-         function calculateHangulSimilarity(char1, char2) {
-             const decomp1 = decomposeHangul(char1);
-             const decomp2 = decomposeHangul(char2);
-             
-             let matchCount = 0;
-             let totalCount = 0;
-             
-             // 초성 비교
-             if (decomp1.chosung || decomp2.chosung) {
-                 totalCount++;
-                 if (decomp1.chosung === decomp2.chosung) matchCount++;
-             }
-             
-             // 중성 비교
-             if (decomp1.jungsung || decomp2.jungsung) {
-                 totalCount++;
-                 if (decomp1.jungsung === decomp2.jungsung) matchCount++;
-             }
-             
-             // 종성 비교
-             if (decomp1.jongsung || decomp2.jongsung) {
-                 totalCount++;
-                 if (decomp1.jongsung === decomp2.jongsung) matchCount++;
-             }
-             
-             return totalCount > 0 ? matchCount / totalCount : 0;
-         }
-         
-         // 레벤슈타인 거리 기반 유사도
-         function calculateLevenshteinSimilarity(str1, str2) {
-             const longer = str1.length > str2.length ? str1 : str2;
-             const shorter = str1.length > str2.length ? str2 : str1;
-             
-             if (longer.length === 0) return 1.0;
-             
-             const distance = levenshteinDistance(longer, shorter);
-             return (longer.length - distance) / longer.length;
-         }
-         
-         // 레벤슈타인 거리 계산
-         function levenshteinDistance(str1, str2) {
-             const matrix = [];
-             
-             for (let i = 0; i <= str2.length; i++) {
-                 matrix[i] = [i];
-             }
-             
-             for (let j = 0; j <= str1.length; j++) {
-                 matrix[0][j] = j;
-             }
-             
-             for (let i = 1; i <= str2.length; i++) {
-                 for (let j = 1; j <= str1.length; j++) {
-                     if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
-                         matrix[i][j] = matrix[i - 1][j - 1];
-                     } else {
-                         matrix[i][j] = Math.min(
-                             matrix[i - 1][j - 1] + 1,
-                             matrix[i][j - 1] + 1,
-                             matrix[i - 1][j] + 1
-                         );
-                     }
-                 }
-             }
-             
-             return matrix[str2.length][str1.length];
-         }
 
         // 회색 가이드선과의 형태 일치도 계산 (핵심 평가 함수)
         function calculateGuideLineMatchScore(canvas, char) {
@@ -2381,2911 +2113,6 @@
             return false;
         }
 
-        // 완성형 한글인지 확인하는 함수
-        function isCompleteHangul(char) {
-            const code = char.charCodeAt(0);
-            return code >= 0xAC00 && code <= 0xD7A3; // 완성형 한글 범위
-        }
-
-        // 각 획별 픽셀 일치율 기반 평가 시스템 (개선된 평가 함수)
-        function evaluateStrokesByPixelMatch(canvas, char) {
-            const ctx = canvas.getContext('2d');
-            const userImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            
-            // 완성형 한글인지 확인
-            if (isCompleteHangul(char)) {
-                // 완성형 한글을 자모별로 분해해서 평가
-                return evaluateCompleteHangul(canvas, char, userImageData);
-            }
-            
-            // 개별 자모나 기타 글자 평가
-            const requiredStrokes = getRequiredStrokes(char);
-            
-            if (requiredStrokes.length === 0) {
-                // 정의되지 않은 글자는 기존 방식 사용
-                const guideMatchScore = calculateGuideLineMatchScore(canvas, char);
-                return {
-                    allStrokesComplete: guideMatchScore >= 0.60,
-                    partialComplete: guideMatchScore >= 0.35,
-                    scores: [guideMatchScore],
-                    totalCount: 1,
-                    completedCount: guideMatchScore >= 0.60 ? 1 : 0
-                };
-            }
-            
-            // 각 획별 완성도 검사
-            const strokeScores = [];
-            let completedStrokes = 0;
-            
-            for (let stroke of requiredStrokes) {
-                const strokeScore = checkStrokeCompletion(userImageData, stroke, canvas.width, canvas.height);
-                strokeScores.push(strokeScore);
-                
-                // 50% 이상 완성으로 간주 (초등 저학년 친화적 기준)
-                if (strokeScore >= 0.50) {
-                    completedStrokes++;
-                }
-            }
-            
-            // 평가 결과 반환
-            return {
-                allStrokesComplete: completedStrokes === requiredStrokes.length,
-                partialComplete: completedStrokes > 0,
-                completedCount: completedStrokes,
-                totalCount: requiredStrokes.length,
-                scores: strokeScores
-            };
-        }
-
-        // 완성형 한글 평가 함수 (자모별 개별 평가)
-        function evaluateCompleteHangul(canvas, char, userImageData) {
-            // 한글 자모 분해
-            const decomposed = decomposeHangul(char);
-            if (!decomposed) {
-                // 분해 실패 시 기존 방식 사용
-                const guideMatchScore = calculateGuideLineMatchScore(canvas, char);
-                return {
-                    allStrokesComplete: guideMatchScore >= 0.75,
-                    partialComplete: guideMatchScore >= 0.55,
-                    scores: [guideMatchScore],
-                    totalCount: 1,
-                    completedCount: guideMatchScore >= 0.75 ? 1 : 0
-                };
-            }
-            
-            const jamoScores = [];
-            let completedJamos = 0;
-            let totalJamos = 0;
-            
-                         // 초성 평가
-             if (decomposed.chosung) {
-                 totalJamos++;
-                 const chosungScore = evaluateJamoInRegion(canvas, decomposed.chosung, 'chosung', decomposed.jungsung);
-                 jamoScores.push({
-                     jamo: decomposed.chosung,
-                     position: 'chosung',
-                     score: chosungScore
-                 });
-                                 if (chosungScore >= 0.50) {
-                    completedJamos++;
-                }
-             }
-             
-             // 중성 평가
-             if (decomposed.jungsung) {
-                 totalJamos++;
-                 const jungsungScore = evaluateJamoInRegion(canvas, decomposed.jungsung, 'jungsung', decomposed.jungsung);
-                 jamoScores.push({
-                     jamo: decomposed.jungsung,
-                     position: 'jungsung',
-                     score: jungsungScore
-                 });
-                                 if (jungsungScore >= 0.50) {
-                    completedJamos++;
-                }
-             }
-             
-             // 종성 평가 (있는 경우만)
-             if (decomposed.jongsung && decomposed.jongsung !== '') {
-                 totalJamos++;
-                 const jongsungScore = evaluateJamoInRegion(canvas, decomposed.jongsung, 'jongsung', decomposed.jungsung);
-                 jamoScores.push({
-                     jamo: decomposed.jongsung,
-                     position: 'jongsung',
-                     score: jongsungScore
-                 });
-                                 if (jongsungScore >= 0.50) {
-                    completedJamos++;
-                }
-             }
-            
-            return {
-                allStrokesComplete: completedJamos === totalJamos,
-                partialComplete: completedJamos > 0,
-                completedCount: completedJamos,
-                totalCount: totalJamos,
-                scores: jamoScores.map(j => j.score),
-                jamoDetails: jamoScores
-            };
-        }
-
-        // 특정 영역에서 자모 평가
-        function evaluateJamoInRegion(canvas, jamo, position, jungsung = '') {
-            const ctx = canvas.getContext('2d');
-            
-            // 자모의 위치별 영역 계산 (중성 정보 포함)
-            const region = getJamoRegionInCompleteHangul(canvas.width, canvas.height, position, jungsung);
-            
-            // 해당 영역의 이미지 데이터 추출
-            const regionImageData = ctx.getImageData(region.x, region.y, region.width, region.height);
-            
-            // 자모별 획 정의 가져오기
-            const requiredStrokes = getRequiredStrokes(jamo);
-            
-            if (requiredStrokes.length === 0) {
-                // 정의되지 않은 자모는 픽셀 밀도로 평가
-                return evaluatePixelDensityInRegion(regionImageData, region);
-            }
-            
-            // 각 획별 완성도 검사 (영역 내에서)
-            let completedStrokes = 0;
-            const strokeScores = [];
-            
-            for (let stroke of requiredStrokes) {
-                // 획 좌표를 영역 내 상대 좌표로 변환
-                const relativeStroke = {
-                    ...stroke,
-                    x: stroke.x,
-                    y: stroke.y,
-                    width: stroke.width,
-                    height: stroke.height
-                };
-                
-                if (stroke.x1 !== undefined) {
-                    relativeStroke.x1 = stroke.x1;
-                    relativeStroke.y1 = stroke.y1;
-                    relativeStroke.x2 = stroke.x2;
-                    relativeStroke.y2 = stroke.y2;
-                }
-                
-                const strokeScore = checkStrokeCompletion(regionImageData, relativeStroke, region.width, region.height);
-                strokeScores.push(strokeScore);
-                
-                if (strokeScore >= 0.50) {
-                    completedStrokes++;
-                }
-            }
-            
-            return completedStrokes / requiredStrokes.length;
-        }
-
-        // 완성형 한글에서 자모 위치 계산 (모음 타입별 위치 조정)
-        function getJamoRegionInCompleteHangul(canvasWidth, canvasHeight, position, jungsung = '') {
-            const margin = 0.05; // 5% 여백
-            const usableWidth = canvasWidth * (1 - margin * 2);
-            const usableHeight = canvasHeight * (1 - margin * 2);
-            const startX = canvasWidth * margin;
-            const startY = canvasHeight * margin;
-            
-            // 세로 모음 (오른쪽 배치): ㅏ, ㅓ, ㅣ, ㅑ, ㅕ, ㅐ, ㅔ, ㅒ, ㅖ
-            const verticalVowels = ['ㅏ', 'ㅓ', 'ㅣ', 'ㅑ', 'ㅕ', 'ㅐ', 'ㅔ', 'ㅒ', 'ㅖ'];
-            // 가로 모음 (아래 배치): ㅗ, ㅜ, ㅡ, ㅛ, ㅠ, ㅚ, ㅟ, ㅢ
-            const horizontalVowels = ['ㅗ', 'ㅜ', 'ㅡ', 'ㅛ', 'ㅠ', 'ㅚ', 'ㅟ', 'ㅢ'];
-            
-            const isVerticalVowel = verticalVowels.includes(jungsung);
-            const isHorizontalVowel = horizontalVowels.includes(jungsung);
-            
-            switch (position) {
-                case 'chosung': // 초성
-                    if (isHorizontalVowel) {
-                        // 가로 모음일 때 초성은 위쪽에 위치
-                        return {
-                            x: Math.floor(startX + usableWidth * 0.1),
-                            y: Math.floor(startY),
-                            width: Math.floor(usableWidth * 0.8),
-                            height: Math.floor(usableHeight * 0.5) // 위쪽 50%
-                        };
-                    } else {
-                        // 세로 모음일 때 초성은 왼쪽에 위치
-                        return {
-                            x: Math.floor(startX),
-                            y: Math.floor(startY),
-                            width: Math.floor(usableWidth * 0.45), // 왼쪽 45%
-                            height: Math.floor(usableHeight * 0.7) // 위쪽 70%
-                        };
-                    }
-                    
-                case 'jungsung': // 중성
-                    if (isHorizontalVowel) {
-                        // 가로 모음은 아래쪽에 위치
-                        return {
-                            x: Math.floor(startX + usableWidth * 0.1),
-                            y: Math.floor(startY + usableHeight * 0.45), // 아래쪽 55%부터
-                            width: Math.floor(usableWidth * 0.8),
-                            height: Math.floor(usableHeight * 0.3) // 높이 30%
-                        };
-                    } else {
-                        // 세로 모음은 오른쪽에 위치
-                        return {
-                            x: Math.floor(startX + usableWidth * 0.5), // 오른쪽 50%부터
-                            y: Math.floor(startY),
-                            width: Math.floor(usableWidth * 0.45), // 오른쪽 45%
-                            height: Math.floor(usableHeight * 0.7) // 위쪽 70%
-                        };
-                    }
-                    
-                case 'jongsung': // 종성 (항상 아래)
-                    return {
-                        x: Math.floor(startX + usableWidth * 0.1), // 중앙 정렬
-                        y: Math.floor(startY + usableHeight * 0.75), // 아래쪽 25%
-                        width: Math.floor(usableWidth * 0.8), // 너비 80%
-                        height: Math.floor(usableHeight * 0.25) // 높이 25%
-                    };
-                    
-                default:
-                    return {x: 0, y: 0, width: canvasWidth, height: canvasHeight};
-            }
-        }
-
-        // 영역 내 픽셀 밀도 평가 (정의되지 않은 자모용)
-        function evaluatePixelDensityInRegion(imageData, region) {
-            let pixelCount = 0;
-            const totalPixels = region.width * region.height;
-            
-            for (let i = 0; i < imageData.data.length; i += 4) {
-                if (imageData.data[i + 3] > 0) {
-                    pixelCount++;
-                }
-            }
-            
-            const density = pixelCount / totalPixels;
-            
-            // 적절한 픽셀 밀도 범위: 2%~30%
-            if (density >= 0.02 && density <= 0.30) {
-                return Math.min(1.0, density * 10); // 최대 1.0으로 제한
-            } else if (density > 0.30) {
-                return 0.3; // 너무 많이 그린 경우 점수 감점
-            } else {
-                return density * 20; // 너무 적게 그린 경우
-            }
-        }
-
-        // ========================================
-        // 새로운 초등학생용 평가 시스템 (단순하고 직관적)
-        // ========================================
-        
-        function evaluateHandwritingForElementaryStudents(canvas, char) {
-            const ctx = canvas.getContext('2d');
-            
-            // 1단계: 회색 가이드선 생성
-            const guideCanvas = document.createElement('canvas');
-            guideCanvas.width = canvas.width;
-            guideCanvas.height = canvas.height;
-            const guideCtx = guideCanvas.getContext('2d');
-            
-            // 가이드선 그리기 (화면과 동일한 스타일)
-            guideCtx.font = 'bold 160px Arial';
-            guideCtx.fillStyle = '#888888';
-            guideCtx.textAlign = 'center';
-            guideCtx.textBaseline = 'middle';
-            guideCtx.fillText(char, canvas.width / 2, canvas.height / 2);
-            
-            // 2단계: 이미지 데이터 가져오기
-            const userImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const guideImageData = guideCtx.getImageData(0, 0, canvas.width, canvas.height);
-            
-            // 3단계: 휘갈김/부적절한 패턴 검사 (가이드선 기반)
-            const scribbleCheck = detectInappropriatePattern(userImageData, guideImageData, canvas.width, canvas.height);
-            if (scribbleCheck.isInappropriate) {
-                return {
-                    result: '빨간불',
-                    reason: scribbleCheck.reason,
-                    allStrokesComplete: false,
-                    partialComplete: false,
-                    scores: [0],
-                    metrics: { scribbleDetected: true, details: scribbleCheck }
-                };
-            }
-            
-            // 4단계: 가이드선 기반 구성요소 평가 (근본 해결)
-            return evaluateBasedOnActualGuide(userImageData, guideImageData, canvas.width, canvas.height, char);
-        }
-        
-        function calculateHandwritingMetrics(userImageData, guideImageData, width, height) {
-            let totalGuidePixels = 0;        // 가이드선 전체 픽셀 수
-            let coveredGuidePixels = 0;      // 사용자가 따라 그린 가이드선 픽셀 수
-            let totalUserPixels = 0;         // 사용자가 그린 전체 픽셀 수
-            let accurateUserPixels = 0;      // 가이드선 근처에 정확히 그린 픽셀 수
-            
-            const tolerance = 15; // 허용 오차 (관대하게 설정)
-            
-            // 픽셀별로 검사
-            for (let i = 0; i < guideImageData.data.length; i += 4) {
-                const guideAlpha = guideImageData.data[i + 3];
-                const userAlpha = userImageData.data[i + 3];
-                
-                // 사용자가 그린 픽셀 카운트
-                if (userAlpha > 0) {
-                    totalUserPixels++;
-                }
-                
-                // 가이드선 픽셀 카운트
-                if (guideAlpha > 0) {
-                    totalGuidePixels++;
-                    
-                    // 가이드선 근처에 사용자 획이 있는지 확인
-                    const pixelIndex = i / 4;
-                    const x = pixelIndex % width;
-                    const y = Math.floor(pixelIndex / width);
-                    
-                    if (hasUserStrokeNearby(userImageData, x, y, width, height, tolerance)) {
-                        coveredGuidePixels++;
-                    }
-                }
-                
-                // 사용자 획의 정확도 검사
-                if (userAlpha > 0) {
-                    const pixelIndex = i / 4;
-                    const x = pixelIndex % width;
-                    const y = Math.floor(pixelIndex / width);
-                    
-                    if (hasGuidePixelNearby(guideImageData, x, y, width, height, tolerance)) {
-                        accurateUserPixels++;
-                    }
-                }
-            }
-            
-            // 지표 계산
-            const guideCoverage = totalGuidePixels > 0 ? coveredGuidePixels / totalGuidePixels : 0;
-            const accuracy = totalUserPixels > 0 ? accurateUserPixels / totalUserPixels : 0;
-            const drawingAmount = totalUserPixels / (width * height); // 전체 대비 그린 양
-            
-            return {
-                guideCoverage,    // 가이드선 커버리지 (0~1)
-                accuracy,         // 정확도 (0~1)
-                drawingAmount,    // 그리기 양 (0~1)
-                totalUserPixels,
-                totalGuidePixels,
-                coveredGuidePixels,
-                accurateUserPixels,
-                canvas: { width, height }, // canvas 크기 정보 포함
-                userImageData    // 사용자 이미지 데이터 포함
-            };
-        }
-        
-        // ========================================
-        // 가이드선 기반 정확한 평가 시스템 (근본 해결)
-        // ========================================
-        
-        // 가이드선 기반 부적절한 패턴 감지 (정확한 휘갈김 감지)
-        function detectInappropriatePattern(userImageData, guideImageData, width, height) {
-            // 1단계: 기본 그리기 양 검사
-            let userPixels = 0;
-            let guidePixels = 0;
-            
-            for (let i = 0; i < userImageData.data.length; i += 4) {
-                if (userImageData.data[i + 3] > 0) userPixels++;
-                if (guideImageData.data[i + 3] > 0) guidePixels++;
-            }
-            
-            const totalPixels = width * height;
-            const userRatio = userPixels / totalPixels;
-            const guideRatio = guidePixels / totalPixels;
-            
-            // 너무 적게 그린 경우
-            if (userRatio < 0.002) {
-                return {
-                    isInappropriate: true,
-                    reason: '너무 적게 그렸어요. 가이드선을 따라 더 써보세요! 📝'
-                };
-            }
-            
-            // 너무 많이 그린 경우 (가이드의 2배 초과) - 더 엄격하게
-            if (userRatio > guideRatio * 2) {
-                return {
-                    isInappropriate: true,
-                    reason: '너무 많이 그렸어요. 가이드선만 따라 써보세요! ✏️'
-                };
-            }
-            
-            // 2단계: 가이드선과의 전체적 일치도 확인 - 더 엄격하게
-            const overallAccuracy = calculateGuideMatchAccuracy(userImageData, guideImageData, width, height);
-            
-            // 가이드선과 전혀 다른 위치에 그린 경우 - 기준 강화
-            if (overallAccuracy < 0.25 && userRatio > 0.01) {
-                return {
-                    isInappropriate: true,
-                    reason: '가이드선을 따라 써주세요! 다른 곳에 그리지 마세요! 🎯'
-                };
-            }
-            
-            // 3단계: 색칠 패턴 감지 - 더 엄격하게
-            const fillRatio = calculateFillRatio(userImageData, width, height);
-            if (fillRatio > 0.2) { // 20%로 낮춤
-                return {
-                    isInappropriate: true,
-                    reason: '색칠하지 말고 선으로만 써주세요! ✏️'
-                };
-            }
-            
-            // 4단계: 급격한 방향 변화나 산발적 패턴 감지 (새로 추가)
-            const scribbleCheck = detectScribblePattern(userImageData, width, height);
-            if (scribbleCheck.isScribble) {
-                return {
-                    isInappropriate: true,
-                    reason: '휘갈겨 쓰지 말고 또박또박 써주세요! ✏️'
-                };
-            }
-            
-            return { isInappropriate: false };
-        }
-        
-        // 휘갈김 패턴 감지 (새로 추가)
-        function detectScribblePattern(userImageData, width, height) {
-            // 전체 영역을 작은 그리드로 나누어 픽셀 분포 확인
-            const gridSize = 10;
-            const cellWidth = Math.floor(width / gridSize);
-            const cellHeight = Math.floor(height / gridSize);
-            
-            let activeCells = 0;
-            let totalActiveCells = 0;
-            const cellPixelCounts = [];
-            
-            for (let row = 0; row < gridSize; row++) {
-                for (let col = 0; col < gridSize; col++) {
-                    const cellStartX = col * cellWidth;
-                    const cellStartY = row * cellHeight;
-                    
-                    let cellPixels = 0;
-                    for (let y = cellStartY; y < cellStartY + cellHeight; y++) {
-                        for (let x = cellStartX; x < cellStartX + cellWidth; x++) {
-                            if (x < width && y < height) {
-                                const index = (y * width + x) * 4;
-                                if (userImageData.data[index + 3] > 0) {
-                                    cellPixels++;
-                                }
-                            }
-                        }
-                    }
-                    
-                    if (cellPixels > 0) {
-                        activeCells++;
-                        cellPixelCounts.push(cellPixels);
-                    }
-                    totalActiveCells++;
-                }
-            }
-            
-            // 1. 너무 많은 셀에 픽셀이 흩어져 있으면 휘갈김
-            const activeCellRatio = activeCells / totalActiveCells;
-            if (activeCellRatio > 0.4) { // 40% 이상의 셀에 픽셀이 있으면 휘갈김
-                return { isScribble: true, reason: '너무 산발적으로 그려짐' };
-            }
-            
-            // 2. 픽셀 밀도 분산이 너무 높으면 휘갈김 
-            if (cellPixelCounts.length > 0) {
-                const avgPixels = cellPixelCounts.reduce((a, b) => a + b, 0) / cellPixelCounts.length;
-                const variance = cellPixelCounts.reduce((acc, val) => acc + Math.pow(val - avgPixels, 2), 0) / cellPixelCounts.length;
-                
-                // 분산이 평균의 3배를 넘으면 불규칙한 패턴
-                if (variance > avgPixels * 3) {
-                    return { isScribble: true, reason: '불규칙한 밀도 분포' };
-                }
-            }
-            
-            return { isScribble: false };
-        }
-        
-        // ========================================
-        // 혁신적 해결책: 의도 기반 적응형 평가 시스템
-        // ========================================
-        
-        function evaluateBasedOnActualGuide(userImageData, guideImageData, width, height, char) {
-            // 1단계: 사용자 의도 파악
-            const intentAnalysis = analyzeUserIntent(userImageData, guideImageData, width, height, char);
-            
-            // 2단계: 글자 복잡도 기반 적응형 기준 설정
-            const adaptiveCriteria = setAdaptiveCriteria(char, intentAnalysis);
-            
-            // 3단계: 맥락적 평가
-            const evaluationResult = performContextualEvaluation(
-                userImageData, guideImageData, width, height, char, 
-                intentAnalysis, adaptiveCriteria
-            );
-            
-            return evaluationResult;
-        }
-        
-        // 사용자 의도 파악 (핵심 알고리즘)
-        function analyzeUserIntent(userImageData, guideImageData, width, height, char) {
-            // 1. 기본 구조 의도 파악
-            const structuralIntent = analyzeStructuralIntent(userImageData, guideImageData, width, height, char);
-            
-            // 2. 완성도 의도 파악  
-            const completionIntent = analyzeCompletionIntent(userImageData, guideImageData, width, height);
-            
-            // 3. 글씨 품질 의도 파악
-            const qualityIntent = analyzeQualityIntent(userImageData, width, height);
-            
-            return {
-                structural: structuralIntent,
-                completion: completionIntent,
-                quality: qualityIntent,
-                overallIntent: determineOverallIntent(structuralIntent, completionIntent, qualityIntent)
-            };
-        }
-        
-        // 구조적 의도 파악
-        function analyzeStructuralIntent(userImageData, guideImageData, width, height, char) {
-            const guideAnalysis = analyzeGuideStructure(guideImageData, width, height, char);
-            const structuralMatches = [];
-            
-            for (let component of guideAnalysis.components) {
-                const basicCoverage = calculateComponentCoverage(userImageData, guideImageData, component.region, width, height);
-                
-                // 의도 판단: 5% 이상이면 쓰려고 한 것으로 간주
-                const hasIntent = basicCoverage.coverage >= 0.05;
-                
-                structuralMatches.push({
-                    component: component.name,
-                    hasIntent: hasIntent,
-                    coverage: basicCoverage.coverage,
-                    type: component.type
-                });
-            }
-            
-            const intendedComponents = structuralMatches.filter(s => s.hasIntent).length;
-            const totalComponents = structuralMatches.length;
-            
-            return {
-                matches: structuralMatches,
-                intendedComponents,
-                totalComponents,
-                structuralCompleteness: intendedComponents / totalComponents,
-                isStructurallyComplete: intendedComponents === totalComponents
-            };
-        }
-        
-        // 완성도 의도 파악
-        function analyzeCompletionIntent(userImageData, guideImageData, width, height) {
-            const overallAccuracy = calculateGuideMatchAccuracy(userImageData, guideImageData, width, height);
-            
-            let userPixels = 0;
-            let guidePixels = 0;
-            
-            for (let i = 0; i < userImageData.data.length; i += 4) {
-                if (userImageData.data[i + 3] > 0) userPixels++;
-                if (guideImageData.data[i + 3] > 0) guidePixels++;
-            }
-            
-            const effort = userPixels / (width * height);
-            const proportion = userPixels / Math.max(guidePixels, 1);
-            
-            return {
-                overallAccuracy,
-                effort,
-                proportion,
-                isHighEffort: effort >= 0.005, // 0.5% 이상 그렸으면 노력한 것
-                isProportionate: proportion >= 0.3 && proportion <= 3.0 // 적절한 비율
-            };
-        }
-        
-        // 품질 의도 파악
-        function analyzeQualityIntent(userImageData, width, height) {
-            const wholeBounds = { x: 0, y: 0, width: width, height: height };
-            const qualityCheck = assessHandwritingQuality(userImageData, wholeBounds, width, height);
-            
-            // 의도적으로 또박또박 쓰려고 했는지 판단
-            const isTryingToBeNeat = qualityCheck.continuity.isGood || qualityCheck.densityDistribution.isGood;
-            
-            return {
-                ...qualityCheck,
-                isTryingToBeNeat,
-                qualityScore: (qualityCheck.continuity.isGood ? 1 : 0) + 
-                             (qualityCheck.densityDistribution.isGood ? 1 : 0) + 
-                             (qualityCheck.directionChanges.isGood ? 1 : 0)
-            };
-        }
-        
-        // 전체 의도 판단
-        function determineOverallIntent(structural, completion, quality) {
-            if (structural.isStructurallyComplete && completion.isHighEffort && quality.isTryingToBeNeat) {
-                return 'TRYING_TO_COMPLETE_NEATLY'; // 완성하려고 노력 중
-            } else if (structural.structuralCompleteness >= 0.7 && completion.isHighEffort) {
-                return 'TRYING_TO_COMPLETE'; // 완성하려고 함
-            } else if (quality.qualityScore === 0 && completion.effort > 0.02) {
-                return 'SCRIBBLING'; // 휘갈김
-            } else if (completion.effort < 0.003) {
-                return 'BARELY_TRYING'; // 거의 안 함
-            } else {
-                return 'PARTIAL_ATTEMPT'; // 부분적 시도
-            }
-        }
-        
-        // 적응형 기준 설정
-        function setAdaptiveCriteria(char, intentAnalysis) {
-            // 글자 복잡도 계산
-            const complexity = calculateCharacterComplexity(char);
-            
-            // 의도에 따른 기준 조정
-            let coverageThreshold, strokeThreshold, qualityThreshold;
-            
-            switch (intentAnalysis.overallIntent) {
-                case 'TRYING_TO_COMPLETE_NEATLY':
-                    // 완성 + 반듯함 의도 → 관대한 기준
-                    coverageThreshold = Math.max(0.25, 0.4 - complexity * 0.1);
-                    strokeThreshold = Math.max(0.35, 0.5 - complexity * 0.1);
-                    qualityThreshold = 2; // 3개 중 2개만 통과하면 됨
-                    break;
-                    
-                case 'TRYING_TO_COMPLETE':
-                    // 완성 의도 → 중간 기준
-                    coverageThreshold = Math.max(0.30, 0.45 - complexity * 0.05);
-                    strokeThreshold = Math.max(0.40, 0.55 - complexity * 0.05);
-                    qualityThreshold = 1; // 3개 중 1개만 통과하면 됨
-                    break;
-                    
-                default:
-                    // 기본 또는 의심스러운 의도 → 엄격한 기준
-                    coverageThreshold = 0.45;
-                    strokeThreshold = 0.60;
-                    qualityThreshold = 3; // 모든 품질 기준 통과 필요
-                    break;
-            }
-            
-            return {
-                coverageThreshold,
-                strokeThreshold,
-                qualityThreshold,
-                complexity,
-                intent: intentAnalysis.overallIntent
-            };
-        }
-        
-        // 글자 복잡도 계산
-        function calculateCharacterComplexity(char) {
-            // 글자별 복잡도 (0.0 = 간단, 1.0 = 복잡)
-            const complexityMap = {
-                // 간단한 자모
-                'ㅡ': 0.1, 'ㅣ': 0.1, 'ㄱ': 0.2, 'ㄴ': 0.2, 'ㅏ': 0.3, 'ㅓ': 0.3,
-                'ㅗ': 0.3, 'ㅜ': 0.3, 'ㅇ': 0.3, 'l': 0.1, 'I': 0.1, '1': 0.1,
-                
-                // 중간 복잡도
-                'ㅁ': 0.5, 'ㅂ': 0.4, 'ㄷ': 0.4, 'ㅅ': 0.4, 'ㅈ': 0.5,
-                'A': 0.4, 'B': 0.5, 'C': 0.4, 'O': 0.3, 'v': 0.3,
-                
-                // 복잡한 자모  
-                'ㄹ': 0.7, 'ㅊ': 0.6, 'ㅋ': 0.5, 'ㅌ': 0.7, 'ㅍ': 0.6, 'ㅎ': 0.8,
-                'ㅑ': 0.5, 'ㅕ': 0.5, 'ㅛ': 0.6, 'ㅠ': 0.6, 'w': 0.7, 'W': 0.7
-            };
-            
-            // 완성형 한글은 자모 복잡도의 합
-            if (isCompleteHangul(char)) {
-                const decomposed = decomposeHangul(char);
-                let totalComplexity = 0;
-                let count = 0;
-                
-                if (decomposed.chosung) {
-                    totalComplexity += complexityMap[decomposed.chosung] || 0.5;
-                    count++;
-                }
-                if (decomposed.jungsung) {
-                    totalComplexity += complexityMap[decomposed.jungsung] || 0.5;
-                    count++;
-                }
-                if (decomposed.jongsung && decomposed.jongsung !== '') {
-                    totalComplexity += complexityMap[decomposed.jongsung] || 0.5;
-                    count++;
-                }
-                
-                return count > 0 ? Math.min(totalComplexity / count, 1.0) : 0.5;
-            }
-            
-            return complexityMap[char] || 0.5;
-        }
-        
-        // 맥락적 평가 수행
-        function performContextualEvaluation(userImageData, guideImageData, width, height, char, intentAnalysis, criteria) {
-            // 휘갈김 즉시 차단
-            if (intentAnalysis.overallIntent === 'SCRIBBLING') {
-                return {
-                    result: '빨간불',
-                    reason: '휘갈겨 쓰지 말고 또박또박 써주세요! ✏️',
-                    allStrokesComplete: false,
-                    partialComplete: false,
-                    scores: [0],
-                    metrics: { intentAnalysis, criteria, reason: 'scribbling_detected' }
-                };
-            }
-            
-            // 거의 안 한 경우
-            if (intentAnalysis.overallIntent === 'BARELY_TRYING') {
-                return {
-                    result: '빨간불',
-                    reason: '가이드선을 따라 더 써보세요! 📝',
-                    allStrokesComplete: false,
-                    partialComplete: false,
-                    scores: [0],
-                    metrics: { intentAnalysis, criteria, reason: 'insufficient_effort' }
-                };
-            }
-            
-            // 구조적 완성도 확인
-            const structuralResult = evaluateStructuralCompleteness(
-                userImageData, guideImageData, width, height, char, intentAnalysis, criteria
-            );
-            
-            return structuralResult;
-        }
-        
-        // 구조적 완성도 평가
-        function evaluateStructuralCompleteness(userImageData, guideImageData, width, height, char, intentAnalysis, criteria) {
-            const guideAnalysis = analyzeGuideStructure(guideImageData, width, height, char);
-            const componentResults = [];
-            let passedComponents = 0;
-            
-            for (let component of guideAnalysis.components) {
-                const result = evaluateComponentWithAdaptiveCriteria(
-                    userImageData, guideImageData, component, width, height, criteria
-                );
-                
-                componentResults.push({
-                    name: component.name,
-                    passed: result.passed,
-                    coverage: result.coverage,
-                    details: result
-                });
-                
-                if (result.passed) passedComponents++;
-            }
-            
-            const completionRatio = passedComponents / guideAnalysis.components.length;
-            
-            // 의도 기반 최종 판정
-            if (completionRatio === 1.0) {
-                return {
-                    result: '초록불',
-                    reason: `훌륭해요! ${char}을(를) 완벽하게 써주셨어요! 🌟`,
-                    allStrokesComplete: true,
-                    partialComplete: true,
-                    scores: [completionRatio],
-                    metrics: { 
-                        intentAnalysis, 
-                        criteria, 
-                        componentResults, 
-                        completionRatio,
-                        reason: 'complete_success'
-                    }
-                };
-            } else if (completionRatio >= 0.7 && intentAnalysis.overallIntent === 'TRYING_TO_COMPLETE_NEATLY') {
-                return {
-                    result: '초록불',
-                    reason: `잘했어요! ${char}을(를) 성실하게 써주셨어요! 💚`,
-                    allStrokesComplete: false,
-                    partialComplete: true,
-                    scores: [completionRatio],
-                    metrics: { 
-                        intentAnalysis, 
-                        criteria, 
-                        componentResults, 
-                        completionRatio,
-                        reason: 'good_intent_bonus'
-                    }
-                };
-            } else if (completionRatio >= 0.5) {
-                const incompleteComponents = componentResults
-                    .filter(c => !c.passed)
-                    .map(c => c.name)
-                    .slice(0, 2) // 최대 2개만 표시
-                    .join(', ');
-                
-                return {
-                    result: '노란불',
-                    reason: `${incompleteComponents} 부분을 더 완성해주세요! (${passedComponents}/${guideAnalysis.components.length}) 📝`,
-                    allStrokesComplete: false,
-                    partialComplete: true,
-                    scores: [completionRatio],
-                    metrics: { 
-                        intentAnalysis, 
-                        criteria, 
-                        componentResults, 
-                        completionRatio,
-                        incompleteComponents
-                    }
-                };
-            } else {
-                return {
-                    result: '빨간불',
-                    reason: '가이드선을 따라 더 완성해주세요! 😊',
-                    allStrokesComplete: false,
-                    partialComplete: false,
-                    scores: [completionRatio],
-                    metrics: { 
-                        intentAnalysis, 
-                        criteria, 
-                        componentResults, 
-                        completionRatio 
-                    }
-                };
-            }
-        }
-        
-        // 적응형 기준으로 구성요소 평가
-        function evaluateComponentWithAdaptiveCriteria(userImageData, guideImageData, component, width, height, criteria) {
-            // 1. 기본 커버리지 확인
-            const coverageResult = calculateComponentCoverage(userImageData, guideImageData, component.region, width, height);
-            const hasSufficientCoverage = coverageResult.coverage >= criteria.coverageThreshold;
-            
-            // 2. 필수 획 확인 (완화된 기준)
-            const strokeResult = verifyRequiredStrokesAdaptive(userImageData, guideImageData, component, component.region, width, height, criteria);
-            
-            // 3. 품질 확인 (적응형)
-            const qualityResult = assessHandwritingQuality(userImageData, component.region, width, height);
-            const qualityScore = (qualityResult.continuity.isGood ? 1 : 0) + 
-                               (qualityResult.densityDistribution.isGood ? 1 : 0) + 
-                               (qualityResult.directionChanges.isGood ? 1 : 0);
-            const hasAcceptableQuality = qualityScore >= criteria.qualityThreshold;
-            
-            // 종합 판정
-            const passed = hasSufficientCoverage && strokeResult.acceptable && hasAcceptableQuality;
-            
-            return {
-                passed,
-                coverage: coverageResult.coverage,
-                hasSufficientCoverage,
-                strokeResult,
-                qualityResult,
-                hasAcceptableQuality,
-                qualityScore
-            };
-        }
-        
-        // 적응형 필수 획 확인
-        function verifyRequiredStrokesAdaptive(userImageData, guideImageData, component, region, width, height, criteria) {
-            const requiredStrokes = getRequiredStrokesForJamo(component.jamo);
-            
-            if (requiredStrokes.length === 0) {
-                return { acceptable: true, reason: 'no_defined_strokes' };
-            }
-            
-            let acceptableStrokes = 0;
-            
-            for (let stroke of requiredStrokes) {
-                const strokeResult = evaluateStrokeInComponentRegion(
-                    userImageData, guideImageData, stroke, region, width, height
-                );
-                
-                // 적응형 기준 적용
-                if (strokeResult.coverage >= criteria.strokeThreshold) {
-                    acceptableStrokes++;
-                }
-            }
-            
-            const strokeCompletionRatio = acceptableStrokes / requiredStrokes.length;
-            const acceptable = strokeCompletionRatio >= 0.8; // 80% 이상의 획이 기준을 만족하면 OK
-            
-            return {
-                acceptable,
-                strokeCompletionRatio,
-                acceptableStrokes,
-                totalStrokes: requiredStrokes.length
-            };
-        }
-        
-        // 가이드선과의 일치도 계산 (정확한 방식)
-        function calculateGuideMatchAccuracy(userImageData, guideImageData, width, height) {
-            let guidePixels = 0;
-            let matchingPixels = 0;
-            const tolerance = 15; // 허용 오차
-            
-            for (let i = 0; i < guideImageData.data.length; i += 4) {
-                if (guideImageData.data[i + 3] > 0) {
-                    guidePixels++;
-                    const pixelIndex = i / 4;
-                    const x = pixelIndex % width;
-                    const y = Math.floor(pixelIndex / width);
-                    
-                    // 주변에서 사용자 획 찾기
-                    let found = false;
-                    for (let dx = -tolerance; dx <= tolerance && !found; dx++) {
-                        for (let dy = -tolerance; dy <= tolerance && !found; dy++) {
-                            const checkX = x + dx;
-                            const checkY = y + dy;
-                            if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height) {
-                                const checkIndex = (checkY * width + checkX) * 4;
-                                if (userImageData.data[checkIndex + 3] > 0) {
-                                    matchingPixels++;
-                                    found = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            return guidePixels > 0 ? matchingPixels / guidePixels : 0;
-        }
-        
-        // 색칠 비율 계산
-        function calculateFillRatio(userImageData, width, height) {
-            const regions = divideIntoRegions(width, height, 8, 8); // 8x8 영역으로 분할
-            let filledRegions = 0;
-            
-            for (let region of regions) {
-                let regionPixels = 0;
-                const regionSize = region.width * region.height;
-                
-                for (let y = region.y; y < region.y + region.height; y++) {
-                    for (let x = region.x; x < region.x + region.width; x++) {
-                        const index = (y * width + x) * 4;
-                        if (userImageData.data[index + 3] > 0) {
-                            regionPixels++;
-                        }
-                    }
-                }
-                
-                // 영역의 30% 이상이 채워져 있으면 색칠된 것으로 간주
-                if (regionPixels / regionSize > 0.3) {
-                    filledRegions++;
-                }
-            }
-            
-            return filledRegions / regions.length;
-        }
-        
-        // 영역 분할 유틸리티
-        function divideIntoRegions(width, height, cols, rows) {
-            const regions = [];
-            const regionWidth = Math.floor(width / cols);
-            const regionHeight = Math.floor(height / rows);
-            
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < cols; col++) {
-                    regions.push({
-                        x: col * regionWidth,
-                        y: row * regionHeight,
-                        width: regionWidth,
-                        height: regionHeight
-                    });
-                }
-            }
-            return regions;
-        }
-        
-        // 가이드선 구조 분석 (핵심 함수)
-        function analyzeGuideStructure(guideImageData, width, height, char) {
-            // 1단계: 가이드선의 실제 픽셀 분포 찾기
-            const guideBounds = findGuideBounds(guideImageData, width, height);
-            
-            // 2단계: 글자 유형에 따른 구성요소 분석
-            if (isCompleteHangul(char)) {
-                return analyzeHangulComponents(guideImageData, guideBounds, width, height, char);
-            } else {
-                return analyzeIndividualCharComponents(guideImageData, guideBounds, width, height, char);
-            }
-        }
-        
-        // 가이드선의 실제 경계 찾기
-        function findGuideBounds(guideImageData, width, height) {
-            let minX = width, maxX = 0, minY = height, maxY = 0;
-            let hasPixels = false;
-            
-            for (let y = 0; y < height; y++) {
-                for (let x = 0; x < width; x++) {
-                    const index = (y * width + x) * 4;
-                    if (guideImageData.data[index + 3] > 0) {
-                        hasPixels = true;
-                        minX = Math.min(minX, x);
-                        maxX = Math.max(maxX, x);
-                        minY = Math.min(minY, y);
-                        maxY = Math.max(maxY, y);
-                    }
-                }
-            }
-            
-            if (!hasPixels) {
-                return { x: 0, y: 0, width: width, height: height };
-            }
-            
-            return {
-                x: minX,
-                y: minY,
-                width: maxX - minX + 1,
-                height: maxY - minY + 1
-            };
-        }
-        
-        // 한글 구성요소 분석
-        function analyzeHangulComponents(guideImageData, bounds, width, height, char) {
-            const decomposed = decomposeHangul(char);
-            if (!decomposed) {
-                return { components: [{ name: 'unknown', region: bounds }] };
-            }
-            
-            const components = [];
-            
-            // 중성 모음 유형 확인
-            const isHorizontalVowel = ['ㅗ', 'ㅜ', 'ㅡ', 'ㅛ', 'ㅠ'].includes(decomposed.jungsung);
-            
-            if (isHorizontalVowel) {
-                // 가로 모음: 상하 분할
-                const topHeight = Math.floor(bounds.height * 0.5);
-                const bottomHeight = bounds.height - topHeight;
-                
-                // 초성 (위쪽)
-                if (decomposed.chosung) {
-                    components.push({
-                        name: `초성_${decomposed.chosung}`,
-                        type: 'chosung',
-                        jamo: decomposed.chosung,
-                        region: {
-                            x: bounds.x,
-                            y: bounds.y,
-                            width: bounds.width,
-                            height: topHeight
-                        }
-                    });
-                }
-                
-                // 중성 (아래쪽)
-                if (decomposed.jungsung) {
-                    const jungsungY = decomposed.jongsung ? bounds.y + Math.floor(topHeight * 0.7) : bounds.y + topHeight;
-                    const jungsungHeight = decomposed.jongsung ? Math.floor(bottomHeight * 0.6) : bottomHeight;
-                    
-                    components.push({
-                        name: `중성_${decomposed.jungsung}`,
-                        type: 'jungsung',
-                        jamo: decomposed.jungsung,
-                        region: {
-                            x: bounds.x,
-                            y: jungsungY,
-                            width: bounds.width,
-                            height: jungsungHeight
-                        }
-                    });
-                }
-                
-                // 종성 (맨 아래)
-                if (decomposed.jongsung && decomposed.jongsung !== '') {
-                    components.push({
-                        name: `종성_${decomposed.jongsung}`,
-                        type: 'jongsung',
-                        jamo: decomposed.jongsung,
-                        region: {
-                            x: bounds.x,
-                            y: bounds.y + bounds.height - Math.floor(bounds.height * 0.25),
-                            width: bounds.width,
-                            height: Math.floor(bounds.height * 0.25)
-                        }
-                    });
-                }
-            } else {
-                // 세로 모음: 좌우 분할
-                const leftWidth = Math.floor(bounds.width * 0.5);
-                const rightWidth = bounds.width - leftWidth;
-                const mainHeight = decomposed.jongsung ? Math.floor(bounds.height * 0.75) : bounds.height;
-                
-                // 초성 (왼쪽)
-                if (decomposed.chosung) {
-                    components.push({
-                        name: `초성_${decomposed.chosung}`,
-                        type: 'chosung',
-                        jamo: decomposed.chosung,
-                        region: {
-                            x: bounds.x,
-                            y: bounds.y,
-                            width: leftWidth,
-                            height: mainHeight
-                        }
-                    });
-                }
-                
-                // 중성 (오른쪽)
-                if (decomposed.jungsung) {
-                    components.push({
-                        name: `중성_${decomposed.jungsung}`,
-                        type: 'jungsung',
-                        jamo: decomposed.jungsung,
-                        region: {
-                            x: bounds.x + leftWidth,
-                            y: bounds.y,
-                            width: rightWidth,
-                            height: mainHeight
-                        }
-                    });
-                }
-                
-                // 종성 (아래 전체)
-                if (decomposed.jongsung && decomposed.jongsung !== '') {
-                    components.push({
-                        name: `종성_${decomposed.jongsung}`,
-                        type: 'jongsung',
-                        jamo: decomposed.jongsung,
-                        region: {
-                            x: bounds.x,
-                            y: bounds.y + mainHeight,
-                            width: bounds.width,
-                            height: bounds.height - mainHeight
-                        }
-                    });
-                }
-            }
-            
-            return { components, bounds, isHangul: true, decomposed };
-        }
-        
-        // 개별 자모/글자 구성요소 분석
-        function analyzeIndividualCharComponents(guideImageData, bounds, width, height, char) {
-            // 단일 구성요소로 처리
-            return {
-                components: [{
-                    name: char,
-                    type: 'individual',
-                    jamo: char, // 이 값이 getRequiredStrokesForJamo에 전달됨
-                    region: bounds
-                }],
-                bounds,
-                isHangul: false
-            };
-        }
-        
-        // 구성요소별 평가 (이중 검증: 가이드 커버리지 + 필수 획 완성도)
-        function evaluateComponentInGuide(userImageData, guideImageData, component, width, height) {
-            const region = component.region;
-            
-            // 1단계: 가이드선 커버리지 계산
-            const coverageResult = calculateComponentCoverage(userImageData, guideImageData, region, width, height);
-            
-            // 2단계: 필수 획 완성도 검증 (핵심!)
-            const strokeCompletionResult = verifyRequiredStrokes(userImageData, guideImageData, component, region, width, height);
-            
-            // 3단계: 휘갈김/반듯함 검증
-            const handwritingQuality = assessHandwritingQuality(userImageData, region, width, height);
-            
-            // 종합 판정: 모든 조건을 만족해야 완성
-            const hasMinimumCoverage = coverageResult.coverage >= 0.35; // 최소 커버리지 (더 엄격)
-            const allStrokesComplete = strokeCompletionResult.allStrokesComplete;
-            const isNeatHandwriting = handwritingQuality.isNeat;
-            
-            const completed = hasMinimumCoverage && allStrokesComplete && isNeatHandwriting;
-            
-            return {
-                completed,
-                coverage: coverageResult.coverage,
-                componentGuidePixels: coverageResult.componentGuidePixels,
-                componentMatchPixels: coverageResult.componentMatchPixels,
-                region,
-                strokeCompletion: strokeCompletionResult,
-                handwritingQuality: handwritingQuality,
-                hasMinimumCoverage,
-                allStrokesComplete,
-                isNeatHandwriting
-            };
-        }
-        
-        // 가이드선 커버리지 계산
-        function calculateComponentCoverage(userImageData, guideImageData, region, width, height) {
-            let componentGuidePixels = 0;
-            let componentMatchPixels = 0;
-            const tolerance = 15; // 허용 오차
-            
-            for (let y = region.y; y < region.y + region.height; y++) {
-                for (let x = region.x; x < region.x + region.width; x++) {
-                    if (x >= 0 && x < width && y >= 0 && y < height) {
-                        const index = (y * width + x) * 4;
-                        
-                        if (guideImageData.data[index + 3] > 0) {
-                            componentGuidePixels++;
-                            
-                            // 주변에서 사용자 획 찾기
-                            let found = false;
-                            for (let dx = -tolerance; dx <= tolerance && !found; dx++) {
-                                for (let dy = -tolerance; dy <= tolerance && !found; dy++) {
-                                    const checkX = x + dx;
-                                    const checkY = y + dy;
-                                    if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height) {
-                                        const checkIndex = (checkY * width + checkX) * 4;
-                                        if (userImageData.data[checkIndex + 3] > 0) {
-                                            componentMatchPixels++;
-                                            found = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            const coverage = componentGuidePixels > 0 ? componentMatchPixels / componentGuidePixels : 0;
-            return { coverage, componentGuidePixels, componentMatchPixels };
-        }
-        
-        // 필수 획 완성도 검증 (핵심 로직!)
-        function verifyRequiredStrokes(userImageData, guideImageData, component, region, width, height) {
-            // 해당 자모의 필수 획 정의 가져오기
-            const requiredStrokes = getRequiredStrokesForJamo(component.jamo);
-            
-            if (requiredStrokes.length === 0) {
-                // 정의되지 않은 자모는 가이드 커버리지만으로 판단
-                const coverage = calculateComponentCoverage(userImageData, guideImageData, region, width, height).coverage;
-                return {
-                    allStrokesComplete: coverage >= 0.50,
-                    completedStrokes: coverage >= 0.50 ? 1 : 0,
-                    totalStrokes: 1,
-                    strokeResults: [{ name: 'overall', completed: coverage >= 0.50, coverage }]
-                };
-            }
-            
-            let completedStrokes = 0;
-            const strokeResults = [];
-            
-            // 각 필수 획별로 해당 영역에서 검증
-            for (let stroke of requiredStrokes) {
-                const strokeResult = evaluateStrokeInComponentRegion(
-                    userImageData, guideImageData, stroke, region, width, height
-                );
-                
-                strokeResults.push({
-                    name: stroke.name,
-                    completed: strokeResult.completed,
-                    coverage: strokeResult.coverage,
-                    strokeResult
-                });
-                
-                if (strokeResult.completed) {
-                    completedStrokes++;
-                }
-            }
-            
-            const allStrokesComplete = completedStrokes === requiredStrokes.length;
-            
-            return {
-                allStrokesComplete,
-                completedStrokes,
-                totalStrokes: requiredStrokes.length,
-                strokeResults
-            };
-        }
-        
-        // 구성요소 영역 내에서 개별 획 평가
-        function evaluateStrokeInComponentRegion(userImageData, guideImageData, stroke, componentRegion, canvasWidth, canvasHeight) {
-            // 획의 상대 좌표를 구성요소 영역 내 절대 좌표로 변환
-            const strokeRegion = {
-                x: componentRegion.x + stroke.x * componentRegion.width,
-                y: componentRegion.y + stroke.y * componentRegion.height,
-                width: stroke.width * componentRegion.width,
-                height: stroke.height * componentRegion.height
-            };
-            
-            // 해당 획 영역에서 충분한 사용자 획이 있는지 확인
-            let userPixelsInStroke = 0;
-            let guidePixelsInStroke = 0;
-            const tolerance = 10;
-            
-            const startX = Math.max(0, Math.floor(strokeRegion.x));
-            const endX = Math.min(canvasWidth, Math.floor(strokeRegion.x + strokeRegion.width));
-            const startY = Math.max(0, Math.floor(strokeRegion.y));
-            const endY = Math.min(canvasHeight, Math.floor(strokeRegion.y + strokeRegion.height));
-            
-            // 가이드 픽셀과 사용자 픽셀 매칭 확인
-            for (let y = startY; y < endY; y++) {
-                for (let x = startX; x < endX; x++) {
-                    const index = (y * canvasWidth + x) * 4;
-                    
-                    if (guideImageData.data[index + 3] > 0) {
-                        guidePixelsInStroke++;
-                        
-                        // 주변에서 사용자 획 찾기
-                        let found = false;
-                        for (let dx = -tolerance; dx <= tolerance && !found; dx++) {
-                            for (let dy = -tolerance; dy <= tolerance && !found; dy++) {
-                                const checkX = x + dx;
-                                const checkY = y + dy;
-                                if (checkX >= 0 && checkX < canvasWidth && checkY >= 0 && checkY < canvasHeight) {
-                                    const checkIndex = (checkY * canvasWidth + checkX) * 4;
-                                    if (userImageData.data[checkIndex + 3] > 0) {
-                                        userPixelsInStroke++;
-                                        found = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            const coverage = guidePixelsInStroke > 0 ? userPixelsInStroke / guidePixelsInStroke : 0;
-            const completed = coverage >= 0.60; // 각 획의 60% 이상 완성되어야 함 (더 엄격)
-            
-            return { completed, coverage, userPixelsInStroke, guidePixelsInStroke };
-        }
-        
-        // 손글씨 품질 평가 (휘갈김 vs 반듯함)
-        function assessHandwritingQuality(userImageData, region, width, height) {
-            // 1. 선의 연속성 확인
-            const continuity = checkStrokeContinuity(userImageData, region, width, height);
-            
-            // 2. 밀도 분포 확인 (색칠 감지)
-            const densityDistribution = checkDensityDistribution(userImageData, region, width, height);
-            
-            // 3. 방향 변화 확인 (급격한 변화 감지)
-            const directionChanges = checkDirectionChanges(userImageData, region, width, height);
-            
-            // 종합 판정
-            const isNeat = continuity.isGood && densityDistribution.isGood && directionChanges.isGood;
-            
-            return {
-                isNeat,
-                continuity,
-                densityDistribution,
-                directionChanges,
-                reason: isNeat ? '반듯한 글씨' : '휘갈겨 쓴 글씨 감지'
-            };
-        }
-        
-        // 선의 연속성 확인
-        function checkStrokeContinuity(userImageData, region, width, height) {
-            // 간단한 연속성 검사: 픽셀 밀도가 너무 산발적이지 않은지 확인
-            const gridSize = 8;
-            const cellWidth = Math.floor(region.width / gridSize);
-            const cellHeight = Math.floor(region.height / gridSize);
-            
-            let activeCells = 0;
-            let totalCells = gridSize * gridSize;
-            
-            for (let row = 0; row < gridSize; row++) {
-                for (let col = 0; col < gridSize; col++) {
-                    const cellStartX = region.x + col * cellWidth;
-                    const cellStartY = region.y + row * cellHeight;
-                    
-                    let cellHasPixel = false;
-                    for (let y = cellStartY; y < cellStartY + cellHeight && !cellHasPixel; y++) {
-                        for (let x = cellStartX; x < cellStartX + cellWidth && !cellHasPixel; x++) {
-                            if (x >= 0 && x < width && y >= 0 && y < height) {
-                                const index = (y * width + x) * 4;
-                                if (userImageData.data[index + 3] > 0) {
-                                    cellHasPixel = true;
-                                }
-                            }
-                        }
-                    }
-                    
-                    if (cellHasPixel) activeCells++;
-                }
-            }
-            
-            const activeCellRatio = activeCells / totalCells;
-            const isGood = activeCellRatio < 0.4; // 40% 이하의 셀이 활성화되어야 연속성 있음 (더 엄격)
-            
-            return { isGood, activeCellRatio, reason: isGood ? '연속성 좋음' : '너무 산발적' };
-        }
-        
-        // 밀도 분포 확인 (색칠 감지)
-        function checkDensityDistribution(userImageData, region, width, height) {
-            let totalPixels = 0;
-            let userPixels = 0;
-            
-            for (let y = region.y; y < region.y + region.height; y++) {
-                for (let x = region.x; x < region.x + region.width; x++) {
-                    if (x >= 0 && x < width && y >= 0 && y < height) {
-                        totalPixels++;
-                        const index = (y * width + x) * 4;
-                        if (userImageData.data[index + 3] > 0) {
-                            userPixels++;
-                        }
-                    }
-                }
-            }
-            
-            const density = userPixels / totalPixels;
-            const isGood = density < 0.15; // 15% 미만이어야 색칠이 아님 (더 엄격)
-            
-            return { isGood, density, reason: isGood ? '적절한 밀도' : '색칠 패턴 감지' };
-        }
-        
-        // 방향 변화 확인 (단순화된 버전)
-        function checkDirectionChanges(userImageData, region, width, height) {
-            // 단순한 방향 변화 검사: 너무 많은 작은 영역에 픽셀이 흩어져 있지 않은지 확인
-            const gridSize = 6;
-            const cellWidth = Math.floor(region.width / gridSize);
-            const cellHeight = Math.floor(region.height / gridSize);
-            
-            let activeCells = 0;
-            
-            for (let row = 0; row < gridSize; row++) {
-                for (let col = 0; col < gridSize; col++) {
-                    const cellStartX = region.x + col * cellWidth;
-                    const cellStartY = region.y + row * cellHeight;
-                    
-                    let cellPixels = 0;
-                    for (let y = cellStartY; y < cellStartY + cellHeight; y++) {
-                        for (let x = cellStartX; x < cellStartX + cellWidth; x++) {
-                            if (x >= 0 && x < width && y >= 0 && y < height) {
-                                const index = (y * width + x) * 4;
-                                if (userImageData.data[index + 3] > 0) {
-                                    cellPixels++;
-                                }
-                            }
-                        }
-                    }
-                    
-                    if (cellPixels > 3) activeCells++; // 최소 3픽셀 이상 있어야 의미있는 셀
-                }
-            }
-            
-            const isGood = activeCells <= gridSize * 0.4; // 40% 이하의 셀만 활성화 (더 엄격)
-            
-            return { isGood, activeCells, reason: isGood ? '방향 변화 적절' : '너무 많은 방향 변화' };
-        }
-        
-        // ========================================
-        // 엄격한 구성요소 기반 평가 시스템 (대대적 개선)
-        // ========================================
-        
-        function evaluateWithStrictComponentChecking(userImageData, guideImageData, width, height, char) {
-            // 1단계: 기본 그리기 양 검사
-            const drawingAmount = checkBasicDrawingAmount(userImageData, width, height);
-            if (drawingAmount.result !== 'ok') {
-                return drawingAmount;
-            }
-            
-            // 2단계: 완성형 한글인지 확인하고 분기 처리
-            if (isCompleteHangul(char)) {
-                return evaluateCompleteHangulStrict(userImageData, guideImageData, width, height, char);
-            } else {
-                return evaluateIndividualCharacterStrict(userImageData, guideImageData, width, height, char);
-            }
-        }
-        
-        // 기본 그리기 양 검사
-        function checkBasicDrawingAmount(userImageData, width, height) {
-            let totalUserPixels = 0;
-            const totalPixels = width * height;
-            
-            for (let i = 0; i < userImageData.data.length; i += 4) {
-                if (userImageData.data[i + 3] > 0) {
-                    totalUserPixels++;
-                }
-            }
-            
-            const drawingRatio = totalUserPixels / totalPixels;
-            
-            if (drawingRatio < 0.005) { // 0.5% 미만
-                return {
-                    result: '빨간불',
-                    reason: '너무 적게 그렸어요. 가이드선을 따라 더 써보세요! 📝',
-                    allStrokesComplete: false,
-                    partialComplete: false,
-                    scores: [0]
-                };
-            }
-            
-            if (drawingRatio > 0.35) { // 35% 초과 
-                return {
-                    result: '빨간불',
-                    reason: '너무 많이 그렸어요. 가이드선만 따라 써보세요! ✏️',
-                    allStrokesComplete: false,
-                    partialComplete: false,
-                    scores: [0.1]
-                };
-            }
-            
-            return { result: 'ok', drawingRatio: drawingRatio };
-        }
-        
-        // 완성형 한글 엄격 평가 (모든 자모의 모든 필수 획 체크)
-        function evaluateCompleteHangulStrict(userImageData, guideImageData, width, height, char) {
-            // 한글 자모 분해
-            const decomposed = decomposeHangul(char);
-            if (!decomposed) {
-                return evaluateIndividualCharacterStrict(userImageData, guideImageData, width, height, char);
-            }
-            
-            const evaluationResults = [];
-            let totalRequiredStrokes = 0;
-            let completedStrokes = 0;
-            
-            // 초성 평가 (반드시 있음)
-            if (decomposed.chosung) {
-                const chosungResult = evaluateJamoWithAllStrokes(
-                    userImageData, guideImageData, width, height, 
-                    decomposed.chosung, 'chosung', decomposed.jungsung
-                );
-                evaluationResults.push({
-                    jamo: decomposed.chosung,
-                    position: '초성',
-                    result: chosungResult
-                });
-                totalRequiredStrokes += chosungResult.totalStrokes;
-                completedStrokes += chosungResult.completedStrokes;
-            }
-            
-            // 중성 평가 (반드시 있음)
-            if (decomposed.jungsung) {
-                const jungsungResult = evaluateJamoWithAllStrokes(
-                    userImageData, guideImageData, width, height,
-                    decomposed.jungsung, 'jungsung', decomposed.jungsung
-                );
-                evaluationResults.push({
-                    jamo: decomposed.jungsung,
-                    position: '중성',
-                    result: jungsungResult
-                });
-                totalRequiredStrokes += jungsungResult.totalStrokes;
-                completedStrokes += jungsungResult.completedStrokes;
-            }
-            
-            // 종성 평가 (있는 경우만)
-            if (decomposed.jongsung && decomposed.jongsung !== '') {
-                const jongsungResult = evaluateJamoWithAllStrokes(
-                    userImageData, guideImageData, width, height,
-                    decomposed.jongsung, 'jongsung', decomposed.jungsung
-                );
-                evaluationResults.push({
-                    jamo: decomposed.jongsung,
-                    position: '종성',
-                    result: jongsungResult
-                });
-                totalRequiredStrokes += jongsungResult.totalStrokes;
-                completedStrokes += jongsungResult.completedStrokes;
-            }
-            
-            // 전체 평가 결과 종합
-            const allJamosComplete = evaluationResults.every(r => r.result.allStrokesComplete);
-            const completionRatio = totalRequiredStrokes > 0 ? completedStrokes / totalRequiredStrokes : 0;
-            
-            // 최종 판정
-            if (allJamosComplete) {
-                // 모든 자모의 모든 필수 획이 완성된 경우만 초록불
-                const overallAccuracy = evaluationResults.reduce((acc, r) => acc + r.result.accuracy, 0) / evaluationResults.length;
-                
-                if (overallAccuracy >= 0.45) { // 45% 이상 정확도 (완화)
-                    return {
-                        result: '초록불',
-                        reason: '완벽해요! 모든 글자를 또박또박 잘 썼어요! 🌟',
-                        allStrokesComplete: true,
-                        partialComplete: true,
-                        scores: [overallAccuracy],
-                        metrics: { 
-                            evaluationResults, 
-                            completedStrokes, 
-                            totalRequiredStrokes,
-                            overallAccuracy 
-                        }
-                    };
-                } else {
-                    return {
-                        result: '노란불',
-                        reason: '모든 부분을 다 썼어요! 가이드선을 더 정확히 따라 써보세요! 📏',
-                        allStrokesComplete: false,
-                        partialComplete: true,
-                        scores: [overallAccuracy],
-                        metrics: { 
-                            evaluationResults, 
-                            completedStrokes, 
-                            totalRequiredStrokes,
-                            overallAccuracy 
-                        }
-                    };
-                }
-            } else {
-                // 일부 자모의 필수 획이 누락된 경우
-                const incompleteJamos = evaluationResults.filter(r => !r.result.allStrokesComplete);
-                const incompleteList = incompleteJamos.map(r => `${r.position}(${r.jamo})`).join(', ');
-                
-                if (completionRatio >= 0.5) {
-                    return {
-                        result: '노란불',
-                        reason: `${incompleteList}의 모든 획을 완성해주세요! (${completedStrokes}/${totalRequiredStrokes}) 📝`,
-                        allStrokesComplete: false,
-                        partialComplete: true,
-                        scores: [completionRatio],
-                        metrics: { 
-                            evaluationResults, 
-                            completedStrokes, 
-                            totalRequiredStrokes,
-                            incompleteJamos 
-                        }
-                    };
-                } else {
-                    return {
-                        result: '빨간불',
-                        reason: '글자의 각 부분을 더 완성해주세요! 가이드선을 따라 써보세요! 😊',
-                        allStrokesComplete: false,
-                        partialComplete: false,
-                        scores: [completionRatio],
-                        metrics: { 
-                            evaluationResults, 
-                            completedStrokes, 
-                            totalRequiredStrokes 
-                        }
-                    };
-                }
-            }
-        }
-        
-        // 개별 자모 엄격 평가 (모든 필수 획 체크)
-        function evaluateIndividualCharacterStrict(userImageData, guideImageData, width, height, char) {
-            const result = evaluateJamoWithAllStrokes(userImageData, guideImageData, width, height, char, 'whole');
-            
-            if (result.allStrokesComplete && result.accuracy >= 0.45) {
-                return {
-                    result: '초록불',
-                    reason: '완벽해요! 모든 획을 또박또박 잘 썼어요! 🌟',
-                    allStrokesComplete: true,
-                    partialComplete: true,
-                    scores: [result.accuracy],
-                    metrics: { strokeResults: result }
-                };
-            } else if (result.allStrokesComplete) {
-                return {
-                    result: '노란불',
-                    reason: '모든 획을 다 썼어요! 가이드선을 더 정확히 따라 써보세요! 📏',
-                    allStrokesComplete: false,
-                    partialComplete: true,
-                    scores: [result.accuracy],
-                    metrics: { strokeResults: result }
-                };
-            } else if (result.completedStrokes >= result.totalStrokes / 2) {
-                return {
-                    result: '노란불',
-                    reason: `${char}의 모든 획을 완성해주세요! (${result.completedStrokes}/${result.totalStrokes}) 📝`,
-                    allStrokesComplete: false,
-                    partialComplete: true,
-                    scores: [result.completedStrokes / result.totalStrokes],
-                    metrics: { strokeResults: result }
-                };
-            } else {
-                return {
-                    result: '빨간불',
-                    reason: '가이드선을 따라 더 완성해주세요! 😊',
-                    allStrokesComplete: false,
-                    partialComplete: false,
-                    scores: [result.completedStrokes / result.totalStrokes],
-                    metrics: { strokeResults: result }
-                };
-            }
-                }
-        
-        // ========================================
-        // 자모별 모든 필수 획 완성도 검사 (핵심 함수)
-        // ========================================
-        
-        function evaluateJamoWithAllStrokes(userImageData, guideImageData, width, height, jamo, position = 'whole', vowelType = '') {
-            // 자모별 필수 획 정의
-            const requiredStrokes = getRequiredStrokesForJamo(jamo);
-            
-            if (requiredStrokes.length === 0) {
-                // 정의되지 않은 자모는 전체 영역으로 평가
-                return evaluateUnknownCharacter(userImageData, guideImageData, width, height);
-            }
-            
-            // 자모의 위치에 따른 영역 계산
-            const jamoRegion = getJamoRegionForPosition(width, height, position, vowelType);
-            
-            let completedStrokes = 0;
-            let totalAccuracy = 0;
-            const strokeResults = [];
-            
-            // 각 필수 획별로 검사
-            for (let stroke of requiredStrokes) {
-                const strokeResult = evaluateIndividualStroke(
-                    userImageData, guideImageData, 
-                    stroke, jamoRegion, width, height
-                );
-                
-                strokeResults.push({
-                    strokeName: stroke.name,
-                    completed: strokeResult.completed,
-                    accuracy: strokeResult.accuracy,
-                    strokeResult: strokeResult
-                });
-                
-                if (strokeResult.completed) {
-                    completedStrokes++;
-                }
-                totalAccuracy += strokeResult.accuracy;
-            }
-            
-            const averageAccuracy = requiredStrokes.length > 0 ? totalAccuracy / requiredStrokes.length : 0;
-            const allStrokesComplete = completedStrokes === requiredStrokes.length;
-            
-            return {
-                jamo: jamo,
-                totalStrokes: requiredStrokes.length,
-                completedStrokes: completedStrokes,
-                allStrokesComplete: allStrokesComplete,
-                accuracy: averageAccuracy,
-                strokeResults: strokeResults
-            };
-        }
-        
-        // 자모별 필수 획 정의 (모든 획이 있어야 완성)
-        function getRequiredStrokesForJamo(jamo) {
-            const strokes = [];
-            
-            switch (jamo) {
-                // 한글 자음
-                case 'ㄱ':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.0, y: 0.1, width: 0.3, height: 0.6 },
-                        { name: '가로선', type: 'horizontal', x: 0.0, y: 0.1, width: 0.7, height: 0.3 }
-                    );
-                    break;
-                case 'ㄴ':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.0, y: 0.1, width: 0.3, height: 0.8 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.0, y: 0.7, width: 0.7, height: 0.3 }
-                    );
-                    break;
-                case 'ㄷ':
-                    strokes.push(
-                        { name: '위가로선', type: 'horizontal', x: 0.1, y: 0.0, width: 0.8, height: 0.3 },
-                        { name: '왼쪽세로선', type: 'vertical', x: 0.0, y: 0.0, width: 0.3, height: 0.6 },
-                        { name: '오른쪽세로선', type: 'vertical', x: 0.7, y: 0.0, width: 0.3, height: 0.6 }
-                    );
-                    break;
-                case 'ㄹ':
-                    strokes.push(
-                        { name: '위가로선', type: 'horizontal', x: 0.0, y: 0.0, width: 0.8, height: 0.2 },
-                        { name: '세로선', type: 'vertical', x: 0.0, y: 0.0, width: 0.2, height: 0.7 },
-                        { name: '중간가로선', type: 'horizontal', x: 0.0, y: 0.35, width: 0.6, height: 0.2 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.0, y: 0.7, width: 1.0, height: 0.2 }
-                    );
-                    break;
-                case 'ㅁ':
-                    strokes.push(
-                        { name: '위가로선', type: 'horizontal', x: 0.0, y: 0.0, width: 1.0, height: 0.25 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.0, y: 0.75, width: 1.0, height: 0.25 },
-                        { name: '왼쪽세로선', type: 'vertical', x: 0.0, y: 0.0, width: 0.25, height: 1.0 },
-                        { name: '오른쪽세로선', type: 'vertical', x: 0.75, y: 0.0, width: 0.25, height: 1.0 }
-                    );
-                    break;
-                case 'ㅂ':
-                    strokes.push(
-                        { name: '중앙세로선', type: 'vertical', x: 0.4, y: 0.0, width: 0.2, height: 1.0 },
-                        { name: '위가로선', type: 'horizontal', x: 0.2, y: 0.25, width: 0.6, height: 0.2 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.2, y: 0.55, width: 0.6, height: 0.2 }
-                    );
-                    break;
-                case 'ㅅ':
-                    strokes.push(
-                        { name: '왼쪽대각선', type: 'diagonal', x1: 0.2, y1: 0.6, x2: 0.5, y2: 0.1 },
-                        { name: '오른쪽대각선', type: 'diagonal', x1: 0.8, y1: 0.6, x2: 0.5, y2: 0.1 }
-                    );
-                    break;
-                case 'ㅇ':
-                    strokes.push(
-                        { name: '원형', type: 'circle', x: 0.2, y: 0.2, width: 0.6, height: 0.6 }
-                    );
-                    break;
-                case 'ㅈ':
-                    strokes.push(
-                        { name: '왼쪽대각선', type: 'diagonal', x1: 0.2, y1: 0.5, x2: 0.5, y2: 0.1 },
-                        { name: '오른쪽대각선', type: 'diagonal', x1: 0.8, y1: 0.5, x2: 0.5, y2: 0.1 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.2, y: 0.7, width: 0.6, height: 0.2 }
-                    );
-                    break;
-                case 'ㅊ':
-                    strokes.push(
-                        { name: '왼쪽대각선', type: 'diagonal', x1: 0.2, y1: 0.4, x2: 0.5, y2: 0.0 },
-                        { name: '오른쪽대각선', type: 'diagonal', x1: 0.8, y1: 0.4, x2: 0.5, y2: 0.0 },
-                        { name: '중간가로선', type: 'horizontal', x: 0.2, y: 0.5, width: 0.6, height: 0.15 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.2, y: 0.7, width: 0.6, height: 0.15 }
-                    );
-                    break;
-                case 'ㅋ':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.0, y: 0.1, width: 0.3, height: 0.8 },
-                        { name: '위가로선', type: 'horizontal', x: 0.0, y: 0.1, width: 0.7, height: 0.25 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.0, y: 0.4, width: 0.6, height: 0.25 }
-                    );
-                    break;
-                case 'ㅌ':
-                    strokes.push(
-                        { name: '위가로선', type: 'horizontal', x: 0.1, y: 0.0, width: 0.8, height: 0.2 },
-                        { name: '중간가로선', type: 'horizontal', x: 0.0, y: 0.3, width: 1.0, height: 0.2 },
-                        { name: '왼쪽세로선', type: 'vertical', x: 0.0, y: 0.0, width: 0.25, height: 0.6 },
-                        { name: '오른쪽세로선', type: 'vertical', x: 0.75, y: 0.0, width: 0.25, height: 0.6 }
-                    );
-                    break;
-                case 'ㅍ':
-                    strokes.push(
-                        { name: '위가로선', type: 'horizontal', x: 0.0, y: 0.0, width: 1.0, height: 0.2 },
-                        { name: '세로선', type: 'vertical', x: 0.4, y: 0.0, width: 0.2, height: 1.0 },
-                        { name: '중간가로선', type: 'horizontal', x: 0.2, y: 0.4, width: 0.6, height: 0.2 }
-                    );
-                    break;
-                case 'ㅎ':
-                    strokes.push(
-                        { name: '왼쪽세로선', type: 'vertical', x: 0.0, y: 0.2, width: 0.25, height: 0.6 },
-                        { name: '오른쪽세로선', type: 'vertical', x: 0.75, y: 0.2, width: 0.25, height: 0.6 },
-                        { name: '중간가로선', type: 'horizontal', x: 0.0, y: 0.4, width: 1.0, height: 0.2 },
-                        { name: '원형', type: 'circle', x: 0.3, y: 0.0, width: 0.4, height: 0.4 }
-                    );
-                    break;
-                
-                // 한글 모음
-                case 'ㅏ':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.3, y: 0.0, width: 0.3, height: 1.0 },
-                        { name: '오른쪽가로선', type: 'horizontal', x: 0.5, y: 0.3, width: 0.4, height: 0.4 }
-                    );
-                    break;
-                case 'ㅓ':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.4, y: 0.0, width: 0.3, height: 1.0 },
-                        { name: '왼쪽가로선', type: 'horizontal', x: 0.1, y: 0.3, width: 0.4, height: 0.4 }
-                    );
-                    break;
-                case 'ㅗ':
-                    strokes.push(
-                        { name: '가로선', type: 'horizontal', x: 0.0, y: 0.3, width: 1.0, height: 0.3 },
-                        { name: '아래세로선', type: 'vertical', x: 0.3, y: 0.5, width: 0.4, height: 0.5 }
-                    );
-                    break;
-                case 'ㅜ':
-                    strokes.push(
-                        { name: '가로선', type: 'horizontal', x: 0.0, y: 0.4, width: 1.0, height: 0.3 },
-                        { name: '위세로선', type: 'vertical', x: 0.3, y: 0.0, width: 0.4, height: 0.5 }
-                    );
-                    break;
-                case 'ㅡ':
-                    strokes.push(
-                        { name: '가로선', type: 'horizontal', x: 0.0, y: 0.4, width: 1.0, height: 0.2 }
-                    );
-                    break;
-                case 'ㅣ':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.4, y: 0.0, width: 0.2, height: 1.0 }
-                    );
-                    break;
-                case 'ㅑ':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.3, y: 0.0, width: 0.3, height: 1.0 },
-                        { name: '위가로선', type: 'horizontal', x: 0.5, y: 0.2, width: 0.4, height: 0.3 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.5, y: 0.5, width: 0.4, height: 0.3 }
-                    );
-                    break;
-                case 'ㅕ':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.4, y: 0.0, width: 0.3, height: 1.0 },
-                        { name: '위가로선', type: 'horizontal', x: 0.1, y: 0.2, width: 0.4, height: 0.3 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.1, y: 0.5, width: 0.4, height: 0.3 }
-                    );
-                    break;
-                case 'ㅛ':
-                    strokes.push(
-                        { name: '가로선', type: 'horizontal', x: 0.0, y: 0.3, width: 1.0, height: 0.3 },
-                        { name: '왼쪽세로선', type: 'vertical', x: 0.2, y: 0.5, width: 0.3, height: 0.5 },
-                        { name: '오른쪽세로선', type: 'vertical', x: 0.5, y: 0.5, width: 0.3, height: 0.5 }
-                    );
-                    break;
-                case 'ㅠ':
-                    strokes.push(
-                        { name: '가로선', type: 'horizontal', x: 0.0, y: 0.4, width: 1.0, height: 0.3 },
-                        { name: '왼쪽세로선', type: 'vertical', x: 0.2, y: 0.0, width: 0.3, height: 0.5 },
-                        { name: '오른쪽세로선', type: 'vertical', x: 0.5, y: 0.0, width: 0.3, height: 0.5 }
-                    );
-                    break;
-                
-                // 영어 알파벳
-                case 'A': case 'a':
-                    strokes.push(
-                        { name: '왼쪽대각선', type: 'diagonal', x1: 0.2, y1: 0.8, x2: 0.5, y2: 0.1 },
-                        { name: '오른쪽대각선', type: 'diagonal', x1: 0.8, y1: 0.8, x2: 0.5, y2: 0.1 },
-                        { name: '가로선', type: 'horizontal', x: 0.3, y: 0.5, width: 0.4, height: 0.15 }
-                    );
-                    break;
-                case 'B': case 'b':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.0, y: 0.0, width: 0.2, height: 1.0 },
-                        { name: '위가로선', type: 'horizontal', x: 0.0, y: 0.0, width: 0.7, height: 0.2 },
-                        { name: '중간가로선', type: 'horizontal', x: 0.0, y: 0.4, width: 0.6, height: 0.2 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.0, y: 0.8, width: 0.7, height: 0.2 }
-                    );
-                    break;
-                case 'O': case 'o': case '0':
-                    strokes.push(
-                        { name: '원형', type: 'circle', x: 0.1, y: 0.1, width: 0.8, height: 0.8 }
-                    );
-                    break;
-                case 'l': case 'L': case 'I': case 'i': case '1':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.4, y: 0.0, width: 0.2, height: 1.0 }
-                    );
-                    break;
-                case '2':
-                    strokes.push(
-                        { name: '위가로선', type: 'horizontal', x: 0.1, y: 0.0, width: 0.8, height: 0.2 },
-                        { name: '중간대각선', type: 'diagonal', x1: 0.8, y1: 0.2, x2: 0.1, y2: 0.6 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.1, y: 0.8, width: 0.8, height: 0.2 }
-                    );
-                    break;
-                case '3':
-                    strokes.push(
-                        { name: '위가로선', type: 'horizontal', x: 0.1, y: 0.0, width: 0.8, height: 0.2 },
-                        { name: '중간가로선', type: 'horizontal', x: 0.1, y: 0.4, width: 0.7, height: 0.2 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.1, y: 0.8, width: 0.8, height: 0.2 }
-                    );
-                    break;
-                case 'v': case 'V':
-                    strokes.push(
-                        { name: '왼쪽대각선', type: 'diagonal', x1: 0.2, y1: 0.1, x2: 0.5, y2: 0.8 },
-                        { name: '오른쪽대각선', type: 'diagonal', x1: 0.8, y1: 0.1, x2: 0.5, y2: 0.8 }
-                    );
-                    break;
-                case 'w': case 'W':
-                    strokes.push(
-                        { name: '왼쪽대각선1', type: 'diagonal', x1: 0.1, y1: 0.1, x2: 0.3, y2: 0.8 },
-                        { name: '중간대각선1', type: 'diagonal', x1: 0.3, y1: 0.8, x2: 0.5, y2: 0.4 },
-                        { name: '중간대각선2', type: 'diagonal', x1: 0.5, y1: 0.4, x2: 0.7, y2: 0.8 },
-                        { name: '오른쪽대각선1', type: 'diagonal', x1: 0.7, y1: 0.8, x2: 0.9, y2: 0.1 }
-                    );
-                    break;
-                case 'C': case 'c':
-                    strokes.push(
-                        { name: '왼쪽세로선', type: 'vertical', x: 0.1, y: 0.2, width: 0.2, height: 0.6 },
-                        { name: '위가로선', type: 'horizontal', x: 0.1, y: 0.1, width: 0.7, height: 0.2 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.1, y: 0.8, width: 0.7, height: 0.2 }
-                    );
-                    break;
-                case 'D': case 'd':
-                    strokes.push(
-                        { name: '세로선', type: 'vertical', x: 0.0, y: 0.0, width: 0.2, height: 1.0 },
-                        { name: '위가로선', type: 'horizontal', x: 0.0, y: 0.0, width: 0.6, height: 0.2 },
-                        { name: '아래가로선', type: 'horizontal', x: 0.0, y: 0.8, width: 0.6, height: 0.2 },
-                        { name: '오른쪽곡선', type: 'circle', x: 0.5, y: 0.1, width: 0.4, height: 0.8 }
-                    );
-                    break;
-                
-                default:
-                    // 정의되지 않은 글자는 빈 배열 반환
-                    return [];
-            }
-            
-            return strokes;
-        }
-        
-        // 자모 위치에 따른 영역 계산
-        function getJamoRegionForPosition(width, height, position, vowelType = '') {
-            const margin = 0.05; // 5% 여백
-            const w = width * (1 - margin * 2);
-            const h = height * (1 - margin * 2);
-            const startX = width * margin;
-            const startY = height * margin;
-            
-            switch (position) {
-                case 'chosung': // 초성
-                    const isHorizontalVowel = ['ㅗ', 'ㅜ', 'ㅡ', 'ㅛ', 'ㅠ'].includes(vowelType);
-                    if (isHorizontalVowel) {
-                        // 가로 모음: 초성은 위쪽
-                        return {
-                            x: startX + w * 0.1,
-                            y: startY,
-                            width: w * 0.8,
-                            height: h * 0.45
-                        };
-                    } else {
-                        // 세로 모음: 초성은 왼쪽
-                        return {
-                            x: startX,
-                            y: startY,
-                            width: w * 0.45,
-                            height: h * 0.7
-                        };
-                    }
-                    
-                case 'jungsung': // 중성
-                    const isHorizontalVowel2 = ['ㅗ', 'ㅜ', 'ㅡ', 'ㅛ', 'ㅠ'].includes(vowelType);
-                    if (isHorizontalVowel2) {
-                        // 가로 모음: 중성은 아래쪽
-                        return {
-                            x: startX + w * 0.1,
-                            y: startY + h * 0.5,
-                            width: w * 0.8,
-                            height: h * 0.35
-                        };
-                    } else {
-                        // 세로 모음: 중성은 오른쪽
-                        return {
-                            x: startX + w * 0.5,
-                            y: startY,
-                            width: w * 0.45,
-                            height: h * 0.7
-                        };
-                    }
-                    
-                case 'jongsung': // 종성
-                    return {
-                        x: startX + w * 0.1,
-                        y: startY + h * 0.75,
-                        width: w * 0.8,
-                        height: h * 0.25
-                    };
-                    
-                case 'whole':
-                default:
-                    return {
-                        x: startX,
-                        y: startY,
-                        width: w,
-                        height: h
-                    };
-            }
-        }
-        
-        // 개별 획 평가 (핵심 함수)
-        function evaluateIndividualStroke(userImageData, guideImageData, stroke, jamoRegion, canvasWidth, canvasHeight) {
-            // 획의 절대 좌표 계산
-            let strokeRegion;
-            
-            if (stroke.type === 'diagonal' && stroke.x1 !== undefined) {
-                // 대각선의 경우 x1,y1,x2,y2를 영역으로 변환
-                const x1 = jamoRegion.x + stroke.x1 * jamoRegion.width;
-                const y1 = jamoRegion.y + stroke.y1 * jamoRegion.height;
-                const x2 = jamoRegion.x + stroke.x2 * jamoRegion.width;
-                const y2 = jamoRegion.y + stroke.y2 * jamoRegion.height;
-                
-                strokeRegion = {
-                    x: Math.min(x1, x2) - 10, // 여유 공간
-                    y: Math.min(y1, y2) - 10,
-                    width: Math.abs(x2 - x1) + 20,
-                    height: Math.abs(y2 - y1) + 20,
-                    isLine: true,
-                    x1, y1, x2, y2
-                };
-            } else {
-                // 일반 영역 기반 획
-                strokeRegion = {
-                    x: jamoRegion.x + stroke.x * jamoRegion.width,
-                    y: jamoRegion.y + stroke.y * jamoRegion.height,
-                    width: stroke.width * jamoRegion.width,
-                    height: stroke.height * jamoRegion.height
-                };
-            }
-            
-            // 1단계: 해당 영역에 충분한 획이 있는지 확인
-            const strokeDensity = calculateStrokeInRegion(userImageData, strokeRegion, canvasWidth, canvasHeight);
-            
-            // 2단계: 가이드선과의 일치도 확인
-            let guideAccuracy;
-            if (strokeRegion.isLine && strokeRegion.x1 !== undefined) {
-                // 대각선의 경우 선형 일치도 계산
-                guideAccuracy = calculateLineAccuracy(
-                    userImageData, guideImageData, strokeRegion, canvasWidth, canvasHeight
-                );
-            } else {
-                // 일반 영역 기반 일치도 계산
-                guideAccuracy = calculateGuideAccuracyInRegion(
-                    userImageData, guideImageData, strokeRegion, canvasWidth, canvasHeight
-                );
-            }
-            
-            // 3단계: 종합 판정 (초등학생 친화적으로 완화)
-            const MIN_DENSITY = 0.008; // 0.8% 이상 그려져야 함 (완화)
-            const MIN_ACCURACY = 0.30; // 30% 이상 정확해야 함 (완화)
-            
-            const hasStroke = strokeDensity >= MIN_DENSITY;
-            const isAccurate = guideAccuracy >= MIN_ACCURACY;
-            const completed = hasStroke && isAccurate;
-            
-            return {
-                completed: completed,
-                accuracy: guideAccuracy,
-                strokeDensity: strokeDensity,
-                hasStroke: hasStroke,
-                isAccurate: isAccurate,
-                strokeRegion: strokeRegion
-            };
-        }
-        
-        // 영역 내 획 밀도 계산
-        function calculateStrokeInRegion(userImageData, region, canvasWidth, canvasHeight) {
-            let strokePixels = 0;
-            let totalPixels = 0;
-            
-            const startX = Math.max(0, Math.floor(region.x));
-            const endX = Math.min(canvasWidth, Math.floor(region.x + region.width));
-            const startY = Math.max(0, Math.floor(region.y));
-            const endY = Math.min(canvasHeight, Math.floor(region.y + region.height));
-            
-            for (let y = startY; y < endY; y++) {
-                for (let x = startX; x < endX; x++) {
-                    totalPixels++;
-                    const index = (y * canvasWidth + x) * 4;
-                    if (userImageData.data[index + 3] > 0) {
-                        strokePixels++;
-                    }
-                }
-            }
-            
-            return totalPixels > 0 ? strokePixels / totalPixels : 0;
-        }
-        
-        // 영역 내 가이드선 일치도 계산
-        function calculateGuideAccuracyInRegion(userImageData, guideImageData, region, canvasWidth, canvasHeight) {
-            let guidePixels = 0;
-            let matchingPixels = 0;
-            const tolerance = 18; // 허용 오차 (완화)
-            
-            const startX = Math.max(0, Math.floor(region.x));
-            const endX = Math.min(canvasWidth, Math.floor(region.x + region.width));
-            const startY = Math.max(0, Math.floor(region.y));
-            const endY = Math.min(canvasHeight, Math.floor(region.y + region.height));
-            
-            for (let y = startY; y < endY; y++) {
-                for (let x = startX; x < endX; x++) {
-                    const index = (y * canvasWidth + x) * 4;
-                    const guideAlpha = guideImageData.data[index + 3];
-                    
-                    if (guideAlpha > 0) {
-                        guidePixels++;
-                        
-                        // 주변에서 사용자 획 찾기
-                        let foundUserStroke = false;
-                        for (let dx = -tolerance; dx <= tolerance && !foundUserStroke; dx++) {
-                            for (let dy = -tolerance; dy <= tolerance && !foundUserStroke; dy++) {
-                                const checkX = x + dx;
-                                const checkY = y + dy;
-                                if (checkX >= 0 && checkX < canvasWidth && checkY >= 0 && checkY < canvasHeight) {
-                                    const checkIndex = (checkY * canvasWidth + checkX) * 4;
-                                    if (userImageData.data[checkIndex + 3] > 0) {
-                                        matchingPixels++;
-                                        foundUserStroke = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            return guidePixels > 0 ? matchingPixels / guidePixels : 0;
-        }
-        
-        // 대각선 등 선형 획의 정확도 계산 (더 정밀한 평가)
-        function calculateLineAccuracy(userImageData, guideImageData, strokeRegion, canvasWidth, canvasHeight) {
-            let guidePixels = 0;
-            let matchingPixels = 0;
-            const tolerance = 20; // 대각선은 더 관대하게
-            
-            // 선형 영역 내에서 가이드 픽셀 찾기
-            const startX = Math.max(0, Math.floor(strokeRegion.x));
-            const endX = Math.min(canvasWidth, Math.floor(strokeRegion.x + strokeRegion.width));
-            const startY = Math.max(0, Math.floor(strokeRegion.y));
-            const endY = Math.min(canvasHeight, Math.floor(strokeRegion.y + strokeRegion.height));
-            
-            for (let y = startY; y < endY; y++) {
-                for (let x = startX; x < endX; x++) {
-                    const index = (y * canvasWidth + x) * 4;
-                    const guideAlpha = guideImageData.data[index + 3];
-                    
-                    if (guideAlpha > 0) {
-                        guidePixels++;
-                        
-                        // 대각선인 경우 더 넓은 범위에서 사용자 획 찾기
-                        let foundUserStroke = false;
-                        for (let dx = -tolerance; dx <= tolerance && !foundUserStroke; dx++) {
-                            for (let dy = -tolerance; dy <= tolerance && !foundUserStroke; dy++) {
-                                const checkX = x + dx;
-                                const checkY = y + dy;
-                                if (checkX >= 0 && checkX < canvasWidth && checkY >= 0 && checkY < canvasHeight) {
-                                    const checkIndex = (checkY * canvasWidth + checkX) * 4;
-                                    if (userImageData.data[checkIndex + 3] > 0) {
-                                        matchingPixels++;
-                                        foundUserStroke = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            return guidePixels > 0 ? matchingPixels / guidePixels : 0;
-        }
-        
-        // 정의되지 않은 글자 평가
-        function evaluateUnknownCharacter(userImageData, guideImageData, width, height) {
-            const accuracy = calculateOverallGuideAccuracy(userImageData, guideImageData, width, height);
-            return {
-                jamo: 'unknown',
-                totalStrokes: 1,
-                completedStrokes: accuracy >= 0.35 ? 1 : 0, // 완화
-                allStrokesComplete: accuracy >= 0.35, // 완화
-                accuracy: accuracy,
-                strokeResults: [{ strokeName: 'overall', completed: accuracy >= 0.35, accuracy: accuracy }]
-            };
-        }
-        
-        // 전체 가이드선 일치도 계산
-        function calculateOverallGuideAccuracy(userImageData, guideImageData, width, height) {
-            let guidePixels = 0;
-            let matchingPixels = 0;
-            const tolerance = 18; // 허용 오차 (완화)
-            
-            for (let i = 0; i < guideImageData.data.length; i += 4) {
-                const guideAlpha = guideImageData.data[i + 3];
-                
-                if (guideAlpha > 0) {
-                    guidePixels++;
-                    const pixelIndex = i / 4;
-                    const x = pixelIndex % width;
-                    const y = Math.floor(pixelIndex / width);
-                    
-                    // 주변에서 사용자 획 찾기
-                    let foundUserStroke = false;
-                    for (let dx = -tolerance; dx <= tolerance && !foundUserStroke; dx++) {
-                        for (let dy = -tolerance; dy <= tolerance && !foundUserStroke; dy++) {
-                            const checkX = x + dx;
-                            const checkY = y + dy;
-                            if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height) {
-                                const checkIndex = (checkY * width + checkX) * 4;
-                                if (userImageData.data[checkIndex + 3] > 0) {
-                                    matchingPixels++;
-                                    foundUserStroke = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            return guidePixels > 0 ? matchingPixels / guidePixels : 0;
-        }
-
-        // 글자의 모든 구조적 영역이 완성되었는지 확인하는 핵심 함수
-        function checkAllStructuralAreasComplete(userImageData, char, width, height) {
-            // 글자별 구조적 영역 정의
-            const structuralAreas = getStructuralAreas(char, width, height);
-            
-            let completedAreas = 0;
-            const areaResults = [];
-            
-            for (let area of structuralAreas) {
-                const isComplete = checkAreaHasStroke(userImageData, area, width, height);
-                areaResults.push({
-                    name: area.name,
-                    isComplete: isComplete,
-                    area: area
-                });
-                
-                if (isComplete) {
-                    completedAreas++;
-                }
-            }
-            
-            return {
-                allAreasComplete: completedAreas === structuralAreas.length,
-                completedAreas: completedAreas,
-                totalAreas: structuralAreas.length,
-                completionRatio: completedAreas / structuralAreas.length,
-                areaResults: areaResults
-            };
-        }
-        
-        // 글자별 구조적 영역 정의 (모든 영역에 획이 있어야 완성)
-        function getStructuralAreas(char, canvasWidth, canvasHeight) {
-            const areas = [];
-            const margin = 0.1; // 10% 여백
-            const w = canvasWidth * (1 - margin * 2);
-            const h = canvasHeight * (1 - margin * 2);
-            const startX = canvasWidth * margin;
-            const startY = canvasHeight * margin;
-            
-            // 완성형 한글 처리
-            if (isCompleteHangul(char)) {
-                const decomposed = decomposeHangul(char);
-                if (decomposed) {
-                    // 초성 영역 (왼쪽 또는 위)
-                    if (decomposed.chosung) {
-                        const isHorizontalVowel = ['ㅗ', 'ㅜ', 'ㅡ', 'ㅛ', 'ㅠ'].includes(decomposed.jungsung);
-                        if (isHorizontalVowel) {
-                            // 가로 모음: 초성은 위쪽
-                            areas.push({
-                                name: `초성_${decomposed.chosung}`,
-                                x: startX + w * 0.2,
-                                y: startY,
-                                width: w * 0.6,
-                                height: h * 0.4
-                            });
-                        } else {
-                            // 세로 모음: 초성은 왼쪽
-                            areas.push({
-                                name: `초성_${decomposed.chosung}`,
-                                x: startX,
-                                y: startY,
-                                width: w * 0.45,
-                                height: h * 0.7
-                            });
-                        }
-                    }
-                    
-                    // 중성 영역 (오른쪽 또는 아래)
-                    if (decomposed.jungsung) {
-                        const isHorizontalVowel = ['ㅗ', 'ㅜ', 'ㅡ', 'ㅛ', 'ㅠ'].includes(decomposed.jungsung);
-                        if (isHorizontalVowel) {
-                            // 가로 모음: 중성은 아래쪽
-                            areas.push({
-                                name: `중성_${decomposed.jungsung}`,
-                                x: startX + w * 0.2,
-                                y: startY + h * 0.5,
-                                width: w * 0.6,
-                                height: h * 0.35
-                            });
-                        } else {
-                            // 세로 모음: 중성은 오른쪽
-                            areas.push({
-                                name: `중성_${decomposed.jungsung}`,
-                                x: startX + w * 0.5,
-                                y: startY,
-                                width: w * 0.45,
-                                height: h * 0.7
-                            });
-                        }
-                    }
-                    
-                    // 종성 영역 (아래)
-                    if (decomposed.jongsung && decomposed.jongsung !== '') {
-                        areas.push({
-                            name: `종성_${decomposed.jongsung}`,
-                            x: startX + w * 0.2,
-                            y: startY + h * 0.75,
-                            width: w * 0.6,
-                            height: h * 0.25
-                        });
-                    }
-                }
-            } else {
-                // 개별 자모나 기타 글자는 영역별로 나누기
-                switch (char) {
-                    case 'ㄱ':
-                        areas.push(
-                            { name: '세로선', x: startX, y: startY, width: w * 0.3, height: h * 0.7 },
-                            { name: '가로선', x: startX, y: startY, width: w * 0.7, height: h * 0.3 }
-                        );
-                        break;
-                    case 'ㄴ':
-                        areas.push(
-                            { name: '세로선', x: startX, y: startY, width: w * 0.3, height: h },
-                            { name: '가로선', x: startX, y: startY + h * 0.7, width: w * 0.7, height: h * 0.3 }
-                        );
-                        break;
-                    case 'ㅏ':
-                        areas.push(
-                            { name: '세로선', x: startX + w * 0.3, y: startY, width: w * 0.3, height: h },
-                            { name: '가로선', x: startX + w * 0.5, y: startY + h * 0.3, width: w * 0.4, height: h * 0.4 }
-                        );
-                        break;
-                    case 'ㅓ':
-                        areas.push(
-                            { name: '세로선', x: startX + w * 0.4, y: startY, width: w * 0.3, height: h },
-                            { name: '가로선', x: startX, y: startY + h * 0.3, width: w * 0.4, height: h * 0.4 }
-                        );
-                        break;
-                    case 'ㅗ':
-                        areas.push(
-                            { name: '가로선', x: startX, y: startY + h * 0.2, width: w, height: h * 0.3 },
-                            { name: '세로선', x: startX + w * 0.3, y: startY + h * 0.4, width: w * 0.4, height: h * 0.6 }
-                        );
-                        break;
-                    case 'ㅜ':
-                        areas.push(
-                            { name: '가로선', x: startX, y: startY + h * 0.5, width: w, height: h * 0.3 },
-                            { name: '세로선', x: startX + w * 0.3, y: startY, width: w * 0.4, height: h * 0.6 }
-                        );
-                        break;
-                    case 'ㅁ':
-                        areas.push(
-                            { name: '위선', x: startX, y: startY, width: w, height: h * 0.2 },
-                            { name: '아래선', x: startX, y: startY + h * 0.8, width: w, height: h * 0.2 },
-                            { name: '왼쪽선', x: startX, y: startY, width: w * 0.2, height: h },
-                            { name: '오른쪽선', x: startX + w * 0.8, y: startY, width: w * 0.2, height: h }
-                        );
-                        break;
-                    case 'ㅂ':
-                        areas.push(
-                            { name: '세로선', x: startX + w * 0.4, y: startY, width: w * 0.2, height: h },
-                            { name: '위가로선', x: startX + w * 0.2, y: startY + h * 0.25, width: w * 0.6, height: h * 0.15 },
-                            { name: '아래가로선', x: startX + w * 0.2, y: startY + h * 0.6, width: w * 0.6, height: h * 0.15 }
-                        );
-                        break;
-                    case 'ㅅ':
-                        areas.push(
-                            { name: '왼쪽대각선', x: startX, y: startY + h * 0.3, width: w * 0.6, height: h * 0.7 },
-                            { name: '오른쪽대각선', x: startX + w * 0.4, y: startY + h * 0.3, width: w * 0.6, height: h * 0.7 }
-                        );
-                        break;
-                    case 'ㅇ':
-                        areas.push(
-                            { name: '원형', x: startX + w * 0.2, y: startY + h * 0.2, width: w * 0.6, height: h * 0.6 }
-                        );
-                        break;
-                    case 'ㅈ':
-                        areas.push(
-                            { name: '왼쪽대각선', x: startX, y: startY + h * 0.1, width: w * 0.6, height: h * 0.5 },
-                            { name: '오른쪽대각선', x: startX + w * 0.4, y: startY + h * 0.1, width: w * 0.6, height: h * 0.5 },
-                            { name: '아래가로선', x: startX + w * 0.1, y: startY + h * 0.7, width: w * 0.8, height: h * 0.2 }
-                        );
-                        break;
-                    case 'ㅡ':
-                        areas.push(
-                            { name: '가로선', x: startX, y: startY + h * 0.4, width: w, height: h * 0.2 }
-                        );
-                        break;
-                    case 'ㅣ':
-                        areas.push(
-                            { name: '세로선', x: startX + w * 0.4, y: startY, width: w * 0.2, height: h }
-                        );
-                        break;
-                    
-                    // 영어 알파벳
-                    case 'A': case 'a':
-                        areas.push(
-                            { name: '왼쪽대각선', x: startX, y: startY + h * 0.3, width: w * 0.6, height: h * 0.7 },
-                            { name: '오른쪽대각선', x: startX + w * 0.4, y: startY + h * 0.3, width: w * 0.6, height: h * 0.7 },
-                            { name: '가로선', x: startX + w * 0.2, y: startY + h * 0.5, width: w * 0.6, height: h * 0.2 }
-                        );
-                        break;
-                    case 'B': case 'b':
-                        areas.push(
-                            { name: '세로선', x: startX, y: startY, width: w * 0.2, height: h },
-                            { name: '위가로선', x: startX, y: startY, width: w * 0.7, height: h * 0.2 },
-                            { name: '중간가로선', x: startX, y: startY + h * 0.4, width: w * 0.6, height: h * 0.2 },
-                            { name: '아래가로선', x: startX, y: startY + h * 0.8, width: w * 0.7, height: h * 0.2 }
-                        );
-                        break;
-                    case 'O': case 'o':
-                        areas.push(
-                            { name: '원형', x: startX + w * 0.1, y: startY + h * 0.1, width: w * 0.8, height: h * 0.8 }
-                        );
-                        break;
-                    case 'l': case 'L': case 'I': case 'i':
-                        areas.push(
-                            { name: '세로선', x: startX + w * 0.4, y: startY, width: w * 0.2, height: h }
-                        );
-                        break;
-                    
-                    // 숫자
-                    case '1':
-                        areas.push(
-                            { name: '세로선', x: startX + w * 0.4, y: startY, width: w * 0.2, height: h }
-                        );
-                        break;
-                    case '0':
-                        areas.push(
-                            { name: '원형', x: startX + w * 0.1, y: startY + h * 0.1, width: w * 0.8, height: h * 0.8 }
-                        );
-                        break;
-                    
-                    default:
-                        // 정의되지 않은 글자는 전체를 하나의 영역으로
-                        areas.push({
-                            name: '전체',
-                            x: startX,
-                            y: startY,
-                            width: w,
-                            height: h
-                        });
-                        break;
-                }
-            }
-            
-            return areas;
-        }
-        
-        // 특정 영역에 충분한 획이 있는지 확인
-        function checkAreaHasStroke(userImageData, area, canvasWidth, canvasHeight) {
-            const { x, y, width, height } = area;
-            let strokePixels = 0;
-            const totalAreaPixels = width * height;
-            
-            // 영역 내 픽셀 검사
-            for (let py = Math.floor(y); py < Math.floor(y + height); py++) {
-                for (let px = Math.floor(x); px < Math.floor(x + width); px++) {
-                    if (px >= 0 && px < canvasWidth && py >= 0 && py < canvasHeight) {
-                        const index = (py * canvasWidth + px) * 4;
-                        if (userImageData.data[index + 3] > 0) {
-                            strokePixels++;
-                        }
-                    }
-                }
-            }
-            
-            const strokeDensity = strokePixels / totalAreaPixels;
-            
-            // 영역 크기에 따라 다른 기준 적용
-            const requiredDensity = totalAreaPixels > 5000 ? 0.008 : 0.015; // 큰 영역은 0.8%, 작은 영역은 1.5%
-            
-            return strokeDensity >= requiredDensity;
-        }
-        
-        // 헬퍼 함수들
-        function hasUserStrokeNearby(userImageData, x, y, width, height, tolerance) {
-            for (let dx = -tolerance; dx <= tolerance; dx++) {
-                for (let dy = -tolerance; dy <= tolerance; dy++) {
-                    const checkX = x + dx;
-                    const checkY = y + dy;
-                    
-                    if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height) {
-                        const index = (checkY * width + checkX) * 4;
-                        if (userImageData.data[index + 3] > 0) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        
-        function hasGuidePixelNearby(guideImageData, x, y, width, height, tolerance) {
-            for (let dx = -tolerance; dx <= tolerance; dx++) {
-                for (let dy = -tolerance; dy <= tolerance; dy++) {
-                    const checkX = x + dx;
-                    const checkY = y + dy;
-                    
-                    if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height) {
-                        const index = (checkY * width + checkX) * 4;
-                        if (guideImageData.data[index + 3] > 0) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-        // 글자별 필수 획 정의
-        function getRequiredStrokes(char) {
-            const strokes = [];
-            
-            switch (char) {
-                // 한글 모음
-                case 'ㅏ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.4, y: 0.1, width: 0.2, height: 0.8 },    // 세로선
-                        { type: 'horizontal', x: 0.5, y: 0.4, width: 0.4, height: 0.2 }   // 오른쪽 가로선
-                    );
-                    break;
-                case 'ㅓ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.4, y: 0.1, width: 0.2, height: 0.8 },    // 세로선
-                        { type: 'horizontal', x: 0.1, y: 0.4, width: 0.4, height: 0.2 }   // 왼쪽 가로선
-                    );
-                    break;
-                case 'ㅗ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.3, width: 0.8, height: 0.2 },  // 가로선
-                        { type: 'vertical', x: 0.4, y: 0.4, width: 0.2, height: 0.5 }     // 아래 세로선
-                    );
-                    break;
-                case 'ㅜ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.5, width: 0.8, height: 0.2 },  // 가로선
-                        { type: 'vertical', x: 0.4, y: 0.1, width: 0.2, height: 0.5 }     // 위 세로선
-                    );
-                    break;
-                case 'ㅡ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.4, width: 0.8, height: 0.2 }   // 가로선
-                    );
-                    break;
-                case 'ㅣ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.4, y: 0.1, width: 0.2, height: 0.8 }     // 세로선
-                    );
-                    break;
-                case 'ㅑ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.4, y: 0.1, width: 0.2, height: 0.8 },    // 세로선
-                        { type: 'horizontal', x: 0.5, y: 0.25, width: 0.3, height: 0.15 }, // 위 가로선
-                        { type: 'horizontal', x: 0.5, y: 0.6, width: 0.3, height: 0.15 }  // 아래 가로선
-                    );
-                    break;
-                case 'ㅕ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.4, y: 0.1, width: 0.2, height: 0.8 },    // 세로선
-                        { type: 'horizontal', x: 0.15, y: 0.25, width: 0.3, height: 0.15 }, // 위 가로선
-                        { type: 'horizontal', x: 0.15, y: 0.6, width: 0.3, height: 0.15 }  // 아래 가로선
-                    );
-                    break;
-                case 'ㅛ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.3, width: 0.8, height: 0.2 },  // 가로선
-                        { type: 'vertical', x: 0.3, y: 0.4, width: 0.15, height: 0.5 },   // 왼쪽 세로선
-                        { type: 'vertical', x: 0.55, y: 0.4, width: 0.15, height: 0.5 }   // 오른쪽 세로선
-                    );
-                    break;
-                case 'ㅠ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.5, width: 0.8, height: 0.2 },  // 가로선
-                        { type: 'vertical', x: 0.3, y: 0.1, width: 0.15, height: 0.5 },   // 왼쪽 세로선
-                        { type: 'vertical', x: 0.55, y: 0.1, width: 0.15, height: 0.5 }   // 오른쪽 세로선
-                    );
-                    break;
-                case 'ㅐ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.3, y: 0.1, width: 0.15, height: 0.8 },   // 왼쪽 세로선
-                        { type: 'vertical', x: 0.55, y: 0.1, width: 0.15, height: 0.8 },  // 오른쪽 세로선
-                        { type: 'horizontal', x: 0.6, y: 0.4, width: 0.3, height: 0.2 }   // 가로선
-                    );
-                    break;
-                case 'ㅔ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.3, y: 0.1, width: 0.15, height: 0.8 },   // 왼쪽 세로선
-                        { type: 'vertical', x: 0.55, y: 0.1, width: 0.15, height: 0.8 },  // 오른쪽 세로선
-                        { type: 'horizontal', x: 0.1, y: 0.4, width: 0.3, height: 0.2 }   // 가로선
-                    );
-                    break;
-                case 'ㅢ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.3, width: 0.8, height: 0.2 },  // 가로선
-                        { type: 'vertical', x: 0.7, y: 0.1, width: 0.2, height: 0.8 }     // 세로선
-                    );
-                    break;
-                
-                // 한글 자음
-                case 'ㄱ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.1, y: 0.1, width: 0.2, height: 0.6 },    // 세로선
-                        { type: 'horizontal', x: 0.1, y: 0.1, width: 0.6, height: 0.2 }   // 가로선
-                    );
-                    break;
-                case 'ㄴ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.1, y: 0.1, width: 0.2, height: 0.8 },    // 세로선
-                        { type: 'horizontal', x: 0.1, y: 0.7, width: 0.6, height: 0.2 }   // 아래 가로선
-                    );
-                    break;
-                case 'ㄷ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.1, width: 0.8, height: 0.15 }, // 위 가로선
-                        { type: 'vertical', x: 0.1, y: 0.1, width: 0.15, height: 0.6 },   // 왼쪽 세로선
-                        { type: 'vertical', x: 0.75, y: 0.1, width: 0.15, height: 0.6 }   // 오른쪽 세로선
-                    );
-                    break;
-                case 'ㄹ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.1, width: 0.6, height: 0.15 }, // 위 가로선
-                        { type: 'vertical', x: 0.1, y: 0.1, width: 0.15, height: 0.4 },   // 왼쪽 세로선
-                        { type: 'horizontal', x: 0.1, y: 0.35, width: 0.8, height: 0.15 }, // 중간 가로선
-                        { type: 'vertical', x: 0.75, y: 0.35, width: 0.15, height: 0.4 }  // 오른쪽 세로선
-                    );
-                    break;
-                case 'ㅁ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.1, width: 0.8, height: 0.15 }, // 위 가로선
-                        { type: 'horizontal', x: 0.1, y: 0.75, width: 0.8, height: 0.15 }, // 아래 가로선
-                        { type: 'vertical', x: 0.1, y: 0.1, width: 0.15, height: 0.8 },    // 왼쪽 세로선
-                        { type: 'vertical', x: 0.75, y: 0.1, width: 0.15, height: 0.8 }   // 오른쪽 세로선
-                    );
-                    break;
-                case 'ㅂ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.4, y: 0.1, width: 0.2, height: 0.8 },    // 중앙 세로선
-                        { type: 'horizontal', x: 0.2, y: 0.3, width: 0.6, height: 0.15 }, // 위 가로선
-                        { type: 'horizontal', x: 0.2, y: 0.55, width: 0.6, height: 0.15 } // 아래 가로선
-                    );
-                    break;
-                case 'ㅅ':
-                    strokes.push(
-                        { type: 'diagonal', x1: 0.2, y1: 0.6, x2: 0.5, y2: 0.1 },         // 왼쪽 대각선
-                        { type: 'diagonal', x1: 0.8, y1: 0.6, x2: 0.5, y2: 0.1 }          // 오른쪽 대각선
-                    );
-                    break;
-                case 'ㅇ':
-                    strokes.push(
-                        { type: 'circle', x: 0.3, y: 0.3, width: 0.4, height: 0.4 }       // 원형
-                    );
-                    break;
-                case 'ㅈ':
-                    strokes.push(
-                        { type: 'diagonal', x1: 0.2, y1: 0.5, x2: 0.5, y2: 0.1 },         // 왼쪽 대각선
-                        { type: 'diagonal', x1: 0.8, y1: 0.5, x2: 0.5, y2: 0.1 },         // 오른쪽 대각선
-                        { type: 'horizontal', x: 0.2, y: 0.7, width: 0.6, height: 0.15 }  // 아래 가로선
-                    );
-                    break;
-                case 'ㅊ':
-                    strokes.push(
-                        { type: 'diagonal', x1: 0.2, y1: 0.5, x2: 0.5, y2: 0.2 },         // 왼쪽 대각선
-                        { type: 'diagonal', x1: 0.8, y1: 0.5, x2: 0.5, y2: 0.2 },         // 오른쪽 대각선
-                        { type: 'horizontal', x: 0.2, y: 0.1, width: 0.6, height: 0.1 },  // 위 가로선
-                        { type: 'horizontal', x: 0.2, y: 0.7, width: 0.6, height: 0.15 }  // 아래 가로선
-                    );
-                    break;
-                case 'ㅋ':
-                    strokes.push(
-                        { type: 'vertical', x: 0.1, y: 0.1, width: 0.2, height: 0.8 },    // 왼쪽 세로선
-                        { type: 'horizontal', x: 0.3, y: 0.25, width: 0.5, height: 0.15 }, // 위 가로선
-                        { type: 'horizontal', x: 0.3, y: 0.6, width: 0.5, height: 0.15 }  // 아래 가로선
-                    );
-                    break;
-                case 'ㅌ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.1, width: 0.8, height: 0.15 }, // 위 가로선
-                        { type: 'vertical', x: 0.1, y: 0.1, width: 0.15, height: 0.6 },   // 왼쪽 세로선
-                        { type: 'vertical', x: 0.75, y: 0.1, width: 0.15, height: 0.6 },  // 오른쪽 세로선
-                        { type: 'vertical', x: 0.4, y: 0.25, width: 0.2, height: 0.5 }    // 중앙 세로선
-                    );
-                    break;
-                case 'ㅍ':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.1, width: 0.8, height: 0.15 }, // 위 가로선
-                        { type: 'horizontal', x: 0.1, y: 0.75, width: 0.8, height: 0.15 }, // 아래 가로선
-                        { type: 'vertical', x: 0.1, y: 0.1, width: 0.15, height: 0.8 },    // 왼쪽 세로선
-                        { type: 'vertical', x: 0.75, y: 0.1, width: 0.15, height: 0.8 },  // 오른쪽 세로선
-                        { type: 'vertical', x: 0.4, y: 0.25, width: 0.2, height: 0.4 }    // 중앙 세로선
-                    );
-                    break;
-                case 'ㅎ':
-                    strokes.push(
-                        { type: 'circle', x: 0.3, y: 0.2, width: 0.4, height: 0.4 },      // 원형
-                        { type: 'horizontal', x: 0.2, y: 0.7, width: 0.6, height: 0.15 }  // 아래 가로선
-                    );
-                    break;
-                
-                // 영어 알파벳 (예시)
-                case 'A': case 'a':
-                    strokes.push(
-                        { type: 'diagonal', x1: 0.2, y1: 0.8, x2: 0.5, y2: 0.1 },         // 왼쪽 대각선
-                        { type: 'diagonal', x1: 0.8, y1: 0.8, x2: 0.5, y2: 0.1 },         // 오른쪽 대각선
-                        { type: 'horizontal', x: 0.3, y: 0.5, width: 0.4, height: 0.1 }    // 가로선
-                    );
-                    break;
-                case 'B': case 'b':
-                    strokes.push(
-                        { type: 'vertical', x: 0.1, y: 0.1, width: 0.15, height: 0.8 },   // 왼쪽 세로선
-                        { type: 'horizontal', x: 0.1, y: 0.1, width: 0.6, height: 0.15 }, // 위 가로선
-                        { type: 'horizontal', x: 0.1, y: 0.45, width: 0.5, height: 0.1 }, // 중간 가로선
-                        { type: 'horizontal', x: 0.1, y: 0.75, width: 0.6, height: 0.15 } // 아래 가로선
-                    );
-                    break;
-                case 'l': case 'L':
-                    strokes.push(
-                        { type: 'vertical', x: 0.4, y: 0.1, width: 0.2, height: 0.8 }     // 세로선만
-                    );
-                    break;
-                
-                // 숫자
-                case '1':
-                    strokes.push(
-                        { type: 'vertical', x: 0.4, y: 0.1, width: 0.2, height: 0.8 }     // 세로선
-                    );
-                    break;
-                case '7':
-                    strokes.push(
-                        { type: 'horizontal', x: 0.1, y: 0.1, width: 0.8, height: 0.15 }, // 위 가로선
-                        { type: 'diagonal', x1: 0.8, y1: 0.1, x2: 0.3, y2: 0.8 }          // 대각선
-                    );
-                    break;
-                
-                default:
-                    // 정의되지 않은 글자는 빈 배열 반환
-                    return [];
-            }
-            
-            return strokes;
-        }
-
-        // 개별 획 완성도 검사
-        function checkStrokeCompletion(userImageData, stroke, canvasWidth, canvasHeight) {
-            const startX = Math.floor(stroke.x * canvasWidth);
-            const startY = Math.floor(stroke.y * canvasHeight);
-            const width = Math.floor(stroke.width * canvasWidth);
-            const height = Math.floor(stroke.height * canvasHeight);
-            
-            let strokePixels = 0;
-            let totalCheckPixels = 0;
-            
-            if (stroke.type === 'vertical') {
-                // 세로선 검사
-                const centerX = startX + width / 2;
-                const tolerance = Math.max(12, width / 2); // 초등 저학년용 관대한 허용 오차
-                
-                for (let y = startY; y < startY + height; y += 3) { // 검사 간격 완화
-                    totalCheckPixels++;
-                    
-                    // 중심선 근처에서 픽셀 확인
-                    let found = false;
-                    for (let x = centerX - tolerance; x <= centerX + tolerance && !found; x++) {
-                        if (x >= 0 && x < canvasWidth) {
-                            const index = (y * canvasWidth + Math.floor(x)) * 4;
-                            if (userImageData.data[index + 3] > 0) {
-                                strokePixels++;
-                                found = true;
-                            }
-                        }
-                    }
-                }
-            } else if (stroke.type === 'horizontal') {
-                // 가로선 검사
-                const centerY = startY + height / 2;
-                const tolerance = Math.max(12, height / 2); // 초등 저학년용 관대한 허용 오차
-                
-                for (let x = startX; x < startX + width; x += 3) { // 검사 간격 완화
-                    totalCheckPixels++;
-                    
-                    // 중심선 근처에서 픽셀 확인
-                    let found = false;
-                    for (let y = centerY - tolerance; y <= centerY + tolerance && !found; y++) {
-                        if (y >= 0 && y < canvasHeight) {
-                            const index = (Math.floor(y) * canvasWidth + x) * 4;
-                            if (userImageData.data[index + 3] > 0) {
-                                strokePixels++;
-                                found = true;
-                            }
-                        }
-                    }
-                }
-            } else if (stroke.type === 'diagonal') {
-                // 대각선 검사
-                const x1 = stroke.x1 * canvasWidth;
-                const y1 = stroke.y1 * canvasHeight;
-                const x2 = stroke.x2 * canvasWidth;
-                const y2 = stroke.y2 * canvasHeight;
-                
-                const steps = Math.max(Math.abs(x2 - x1), Math.abs(y2 - y1));
-                const stepX = (x2 - x1) / steps;
-                const stepY = (y2 - y1) / steps;
-                
-                for (let i = 0; i <= steps; i += 3) { // 검사 간격 완화
-                    totalCheckPixels++;
-                    const checkX = Math.floor(x1 + stepX * i);
-                    const checkY = Math.floor(y1 + stepY * i);
-                    
-                    // 주변 픽셀 확인
-                    let found = false;
-                    for (let dx = -15; dx <= 15 && !found; dx++) {
-                        for (let dy = -15; dy <= 15 && !found; dy++) {
-                            const x = checkX + dx;
-                            const y = checkY + dy;
-                            if (x >= 0 && x < canvasWidth && y >= 0 && y < canvasHeight) {
-                                const index = (y * canvasWidth + x) * 4;
-                                if (userImageData.data[index + 3] > 0) {
-                                    strokePixels++;
-                                    found = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            } else if (stroke.type === 'circle') {
-                // 원형 검사
-                const centerX = startX + width / 2;
-                const centerY = startY + height / 2;
-                const radiusX = width / 2;
-                const radiusY = height / 2;
-                
-                // 원 둘레를 따라 점검
-                for (let angle = 0; angle < 360; angle += 20) { // 검사 간격 완화
-                    totalCheckPixels++;
-                    const radian = (angle * Math.PI) / 180;
-                    const checkX = Math.floor(centerX + radiusX * Math.cos(radian));
-                    const checkY = Math.floor(centerY + radiusY * Math.sin(radian));
-                    
-                    // 주변 픽셀 확인
-                    let found = false;
-                    for (let dx = -18; dx <= 18 && !found; dx++) {
-                        for (let dy = -18; dy <= 18 && !found; dy++) {
-                            const x = checkX + dx;
-                            const y = checkY + dy;
-                            if (x >= 0 && x < canvasWidth && y >= 0 && y < canvasHeight) {
-                                const index = (y * canvasWidth + x) * 4;
-                                if (userImageData.data[index + 3] > 0) {
-                                    strokePixels++;
-                                    found = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            return totalCheckPixels > 0 ? strokePixels / totalCheckPixels : 0;
-        }
-
         // 색칠/휘갈김 패턴 감지 (휘갈김 감지만 더 엄격하게)
         function isScribbleOrFillPattern(canvas) {
             const ctx = canvas.getContext('2d');
@@ -5315,28 +2142,23 @@
             const fillRatio = filledPixels / totalPixels;
             const edgeRatio = edgePixels / Math.max(filledPixels, 1);
             
-            // 색칠 패턴: 전체 영역을 대충 칠한 경우 감지
-            if (fillRatio > 0.25 && edgeRatio < 0.15) { // 25% 이상 칠하고 가장자리가 적으면 색칠
+            // 색칠 패턴: 전체 영역의 15% 이상이 채워지고 가장자리 비율이 낮음 (기존 유지)
+            if (fillRatio > 0.15 && edgeRatio < 0.20) {
                 return true;
             }
             
-            // 휘갈김 패턴: 연속성이 없는 무작위 점들 - 더 엄격하게 
-            if (fillRatio > 0.03 && hasRandomScribblePattern(imageData, canvas.width, canvas.height)) { // 3% 이상에서 휘갈김 감지
+            // 휘갈김 패턴: 연속성이 없는 무작위 점들 (더 엄격하게)
+            if (fillRatio > 0.03 && hasRandomScribblePattern(imageData, canvas.width, canvas.height)) {
                 return true;
             }
             
-            // 가이드선과 전혀 일치하지 않는 패턴 감지 - 더 엄격하게
+            // 가이드선과 전혀 일치하지 않는 패턴 감지 (더 엄격하게)
             const char = characterCanvases.find(c => c.canvas === canvas)?.char;
             if (char) {
                 const guideMatchScore = calculateGuideLineMatchScore(canvas, char);
-                if (guideMatchScore < 0.15 && fillRatio > 0.02) { // 어느 정도 그렸는데 가이드와 15% 미만 일치하면 휘갈김
+                if (guideMatchScore < 0.20) { // 가이드선과 20% 미만 일치하면 휘갈김으로 간주 (더 엄격하게)
                     return true;
                 }
-            }
-            
-            // 너무 많이 그린 경우 (과도한 그리기)
-            if (fillRatio > 0.30) { // 전체 영역의 30% 이상 그리면 휘갈김으로 간주
-                return true;
             }
             
             // 추가 휘갈김 패턴 감지: 너무 많은 방향 변화
@@ -5637,204 +2459,24 @@
             else return '빨간불';
         }
         
-        // ===============================
-        // 🎮 게임화 평가 시스템 (Writing-Master 스타일)
-        // ===============================
-        
-        // 성취 레벨 정의
-        const ACHIEVEMENT_LEVELS = {
-            NONE: { name: 'none', title: '시작', stars: 0, points: 0 },
-            BRONZE: { name: 'bronze', title: 'Bronze', stars: 1, points: 10 },
-            SILVER: { name: 'silver', title: 'Silver', stars: 2, points: 25 },
-            GOLD: { name: 'gold', title: 'Gold', stars: 3, points: 50 }
-        };
-        
-        // 게임 상태
-        let gameScore = 0;
-        
-        // 게임화 평가 시스템
-        function setIndicatorByEvaluation(canvasData, characterData, evaluation) {
-            // 레거시 호환성을 위해 evaluation 값을 level로 변환
-            let level;
+        // 평가 결과에 따른 표시등 설정
+        function setIndicatorByEvaluation(indicator, characterData, evaluation) {
             switch (evaluation) {
                 case '초록불':
-                    level = ACHIEVEMENT_LEVELS.GOLD;
+                    characterData.completed = true;
+                    indicator.className = 'status-indicator green';
                     break;
                 case '노란불':
-                    level = ACHIEVEMENT_LEVELS.SILVER;
+                    characterData.completed = false;
+                    indicator.className = 'status-indicator yellow';
                     break;
                 case '빨간불':
                 default:
-                    level = ACHIEVEMENT_LEVELS.BRONZE;
+                    characterData.completed = false;
+                    indicator.className = 'status-indicator red';
                     break;
             }
-            
-            updateAchievement(canvasData, level);
         }
-        
-        // 스마트 평가 시스템 (Writing-Master 로직)
-        function evaluateDrawing(canvasData) {
-            const strokeCount = canvasData.strokes.length;
-            const totalPoints = canvasData.strokes.reduce((sum, stroke) => sum + stroke.length, 0);
-            const coverage = calculateCanvasCoverage(canvasData);
-            
-            console.log(`평가: ${canvasData.char} - 획수: ${strokeCount}, 포인트: ${totalPoints}, 커버리지: ${(coverage * 100).toFixed(1)}%`);
-            
-            // 관대한 평가 기준 (Writing-Master 방식)
-            if (strokeCount >= 2 && totalPoints >= 40 && coverage >= 0.08) {
-                return ACHIEVEMENT_LEVELS.GOLD;
-            } else if (strokeCount >= 1 && totalPoints >= 20 && coverage >= 0.04) {
-                return ACHIEVEMENT_LEVELS.SILVER;
-            } else if (strokeCount >= 1 && totalPoints >= 8) {
-                return ACHIEVEMENT_LEVELS.BRONZE;
-            } else {
-                return ACHIEVEMENT_LEVELS.NONE;
-            }
-        }
-        
-        // 캔버스 커버리지 계산
-        function calculateCanvasCoverage(canvasData) {
-            if (!canvasData.canvas) return 0;
-            
-            const ctx = canvasData.ctx;
-            const imageData = ctx.getImageData(0, 0, canvasData.canvas.width, canvasData.canvas.height);
-            const data = imageData.data;
-            
-            let filledPixels = 0;
-            const totalPixels = canvasData.canvas.width * canvasData.canvas.height;
-            
-            for (let i = 0; i < data.length; i += 4) {
-                if (data[i + 3] > 0) {
-                    filledPixels++;
-                }
-            }
-            
-            return filledPixels / totalPixels;
-        }
-        
-        // 성취 업데이트
-        function updateAchievement(canvasData, level) {
-            const previousLevel = canvasData.achievement;
-            
-            // 레벨이 향상된 경우에만 업데이트
-            if (level.stars > previousLevel.stars) {
-                canvasData.achievement = level;
-                updateAchievementUI(canvasData);
-                updateGameUI();
-                
-                // 점수 추가
-                if (level !== ACHIEVEMENT_LEVELS.NONE) {
-                    addScore(level.points);
-                    
-                    // Gold 달성시 축하 효과
-                    if (level === ACHIEVEMENT_LEVELS.GOLD) {
-                        showCelebration();
-                    }
-                }
-            }
-        }
-        
-        // 성취 UI 업데이트
-        function updateAchievementUI(canvasData) {
-            const level = canvasData.achievement;
-            
-            // 배지 업데이트
-            canvasData.achievementBadge.className = `achievement-badge achievement-${level.name}`;
-            canvasData.achievementBadge.textContent = level.title;
-            
-            // 별점 업데이트
-            const stars = canvasData.starsContainer.querySelectorAll('.star');
-            stars.forEach((star, index) => {
-                if (index < level.stars) {
-                    star.classList.add('filled');
-                } else {
-                    star.classList.remove('filled');
-                }
-            });
-            
-            // 애니메이션 효과
-            canvasData.achievementBadge.style.animation = 'pulse 0.3s ease-out';
-            setTimeout(() => {
-                canvasData.achievementBadge.style.animation = '';
-            }, 300);
-        }
-        
-        // 게임 UI 업데이트
-        function updateGameUI() {
-            // 진행률 계산
-            const completedCount = characterCanvases.filter(
-                canvasData => canvasData.achievement !== ACHIEVEMENT_LEVELS.NONE
-            ).length;
-            
-            const progressInfo = document.getElementById('progressInfo');
-            const totalScore = document.getElementById('totalScore');
-            
-            if (progressInfo) {
-                progressInfo.textContent = `진행률: ${completedCount}/${characterCanvases.length} 완료`;
-            }
-            
-            if (totalScore) {
-                totalScore.textContent = gameScore;
-            }
-        }
-        
-        // 점수 추가
-        function addScore(points) {
-            gameScore += points;
-            
-            const scoreElement = document.getElementById('totalScore');
-            if (scoreElement) {
-                scoreElement.style.animation = 'pulse 0.3s ease-out';
-                setTimeout(() => {
-                    scoreElement.style.animation = '';
-                }, 300);
-            }
-        }
-        
-        // 축하 효과
-        function showCelebration() {
-            // 간단한 축하 효과 (컨페티)
-            for (let i = 0; i < 10; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.cssText = `
-                    position: fixed;
-                    top: -10px;
-                    left: ${Math.random() * 100}%;
-                    width: 8px;
-                    height: 8px;
-                    background: ${['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1'][Math.floor(Math.random() * 4)]};
-                    pointer-events: none;
-                    z-index: 1000;
-                    animation: confetti-fall 2s linear forwards;
-                `;
-                
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 2000);
-            }
-        }
-        
-        // CSS 애니메이션 추가
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes confetti-fall {
-                0% {
-                    transform: translateY(-100vh) rotateZ(0deg);
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(100vh) rotateZ(360deg);
-                    opacity: 0;
-                }
-            }
-            
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
-        `;
-        document.head.appendChild(style);
 
         // 모든 획이 완전히 그려졌는지 확인하는 엄격한 검사
         function checkAllStrokesComplete(canvas, fullChar, jamo, position) {
@@ -7413,20 +4055,13 @@
                 
                 // 그리기 데이터 초기화
                 canvasData.drawingData = [];
-                canvasData.strokes = [];
                 
-                // 게임화 상태 초기화
-                canvasData.achievement = ACHIEVEMENT_LEVELS.NONE;
-                updateAchievementUI(canvasData);
+                // 상태 표시등을 빨간색으로 초기화
+                canvasData.indicator.className = 'status-indicator red';
                 
                 // 캐릭터 데이터 초기화
                 characterData[index].completed = false;
             });
-            
-            // 게임 점수 초기화
-            gameScore = 0;
-            updateGameUI();
-            
             console.log('모든 캔버스 초기화 완료');
         }
 
@@ -7527,6 +4162,157 @@
         document.addEventListener('DOMContentLoaded', function() {
             updateDisplayText();
         });
+
+        // 라이브 평가 문구 배열
+        const evaluationMessages = {
+            red: ['🎈준비 중'],
+            yellow: ['😊좋은 흐름이에요', '💫잘 따라오고 있어요'],
+            green: ['💚정성이 느껴져요', '🍀차분히 잘 썼어요']
+        };
+
+        // 평가 결과에 따른 표시등 설정 (라이브 평가 문구 적용)
+        function setIndicatorByEvaluation(indicator, characterData, evaluation) {
+            let message;
+            switch (evaluation) {
+                case '초록불':
+                    characterData.completed = true;
+                    indicator.className = 'status-indicator green';
+                    message = evaluationMessages.green[Math.floor(Math.random() * evaluationMessages.green.length)];
+                    break;
+                case '노란불':
+                    characterData.completed = false;
+                    indicator.className = 'status-indicator yellow';
+                    message = evaluationMessages.yellow[Math.floor(Math.random() * evaluationMessages.yellow.length)];
+                    break;
+                case '빨간불':
+                default:
+                    characterData.completed = false;
+                    indicator.className = 'status-indicator red';
+                    message = evaluationMessages.red[0];
+                    break;
+            }
+            indicator.textContent = message;
+        }
+
+        // 글씨 평가 함수
+        function evaluateHandwriting() {
+            let totalScore = 0;
+            let evaluatedCount = 0;
+
+            // 각 글자 칸의 점수 계산
+            characterCanvases.forEach((canvasData, index) => {
+                const char = canvasData.char;
+                
+                // 최소 그리기 데이터 확인
+                if (canvasData.drawingData.length < 5) {
+                    // 점수: 0점
+                    return;
+                }
+                
+                // 색칠/휘갈김 패턴 감지
+                if (isScribbleOrFillPattern(canvasData.canvas)) {
+                    // 점수: 0점
+                    return;
+                }
+                
+                // 회색 가이드선과의 형태 일치도 평가
+                const guideMatchScore = calculateGuideLineMatchScore(canvasData.canvas, char);
+                
+                let characterScore = 0;
+                if (guideMatchScore >= 0.75) {
+                    characterScore = 100; // 초록불 -> 100점
+                } else if (guideMatchScore >= 0.55) {
+                    characterScore = 60;  // 노란불 -> 60점
+                } else {
+                    characterScore = 0;   // 빨간불 -> 0점
+                }
+                
+                totalScore += characterScore;
+                evaluatedCount++;
+            });
+
+            // 평균 점수 계산
+            const averageScore = evaluatedCount > 0 ? Math.round(totalScore / evaluatedCount) : 0;
+            
+            // 평가 등급과 메시지 결정
+            let grade, message;
+            if (averageScore >= 80) {
+                grade = '#🌟정말 훌륭해요!';
+                message = '글씨가 바르게 잘 써졌어요! 아주 멋진 실력이에요.';
+            } else if (averageScore >= 50) {
+                grade = '#🌸잘했어요!';
+                message = '거의 다 반듯하게 잘 썼어요! 조금 더 다듬으면 완벽해요.';
+            } else if (averageScore >= 25) {
+                grade = '#🌱조금 더 연습해요!';
+                message = '몇 글자는 잘 썼어요! 천천히 반복하면 더 좋아질 거예요.';
+            } else {
+                grade = '#🐾처음부터 차근차근';
+                message = '이제 시작이에요! 하나씩 써보면 금방 나아질 거예요.';
+            }
+
+            // 팝업 표시
+            showEvaluationPopup(grade, averageScore, message);
+        }
+
+        // 평가 팝업 표시
+        function showEvaluationPopup(grade, score, message) {
+            // 기존 팝업이 있으면 제거
+            const existingPopup = document.querySelector('.evaluation-popup');
+            if (existingPopup) {
+                existingPopup.remove();
+            }
+
+            // 팝업 생성
+            const popup = document.createElement('div');
+            popup.className = 'evaluation-popup';
+            
+            popup.innerHTML = `
+                <div class="evaluation-content">
+                    <div class="evaluation-title">${grade}</div>
+                    <div class="evaluation-score" style="color: ${getScoreColor(score)}">${score}점</div>
+                    <div class="evaluation-message">${message}</div>
+                    <button class="popup-close-btn" onclick="closeEvaluationPopup()">닫기</button>
+                </div>
+            `;
+
+            document.body.appendChild(popup);
+
+            // 팝업 클릭으로 닫기 (배경 클릭시)
+            popup.addEventListener('click', function(e) {
+                if (e.target === popup) {
+                    closeEvaluationPopup();
+                }
+            });
+        }
+
+        // 점수에 따른 색상 반환
+        function getScoreColor(score) {
+            if (score >= 80) return '#48bb78';      // 초록색
+            else if (score >= 50) return '#ed8936'; // 주황색
+            else if (score >= 25) return '#ecc94b'; // 노란색
+            else return '#f56565';                  // 빨간색
+        }
+
+        // 평가 팝업 닫기
+        function closeEvaluationPopup() {
+            const popup = document.querySelector('.evaluation-popup');
+            if (popup) {
+                popup.style.animation = 'popupFadeOut 0.3s ease-out forwards';
+                setTimeout(() => {
+                    popup.remove();
+                }, 300);
+            }
+        }
+
+        // 팝업 페이드아웃 애니메이션 추가
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes popupFadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'965d4859c6ad3176',t:'MTc1MzYzMTMyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
